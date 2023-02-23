@@ -8,11 +8,11 @@
 	import Projects from './components/Projects.svelte';
 </script>
 
-<body class="bg-white dark:bg-gray-800 min-h-full">
+<body class="bg-white dark:bg-gray-800 flex flex-wrap justify-center item-center mx-auto">
 	<Header />
-    <About/>
     <Projects/>
     <Skills/>
+    <About/>
     <Contact/>
     <Footer/>
 </body>

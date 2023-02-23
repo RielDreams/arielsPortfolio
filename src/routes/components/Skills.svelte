@@ -1,4 +1,4 @@
-<div class="flex flex-wrap justify-center item-center">
+<div class="flex flex-wrap justify-center item-center bg-blue-100">
 
 <h1 class='text-4xl'>Languages & Technologies I'm comfortable with </h1>
 <div class='flex flex-wrap min-w-full justify-center gap-6'>

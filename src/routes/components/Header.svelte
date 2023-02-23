@@ -2,8 +2,8 @@
 import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from 'flowbite-svelte'
 </script>
 
-<div class="home h-2/3 flex flex flex-wrap ">
-      <Navbar let:hidden let:toggle rounded color="form" class='min-w-full'>
+<div class="home flex flex flex-wrap mb-10 bg-blue-100" style="height:25rem">
+      <Navbar let:hidden let:toggle rounded color="form" class='min-w-full' style='height:5rem'>
         <NavBrand href="/">
             <DarkMode class="text-lg">
                 <svelte:fragment slot="lightIcon">
@@ -26,12 +26,14 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
         </NavUl>
       </Navbar>
 
-    <div class="flex flex-wrap justify-center min-w-full min-h-full">
+    <div class="flex flex-wrap justify-center min-w-full">
         <h1 class='text-5xl min-w-full text-center'>Ariel fernandez</h1>
-        <h3 class='text-3xl min-w-full text-center' >Software Engineer - NYC area</h3>
-        <h4 class='text-lg min-w-full text-center'>i love to create and build things using code</h4>
+        <h3 class='text-3xl min-w-full text-center -my-5' >Software Engineer - NYC area</h3>
+        <h4 class='text-lg min-w-full text-center -my-1'>i love to create and build things using code</h4>
+        <div class='min-w-full flex flex-wrap justify-center gap-1' style="height:1rem">
         <Button>LinkedIn</Button>
         <Button>GitHub</Button>
+    </div>
     </div>
 </div>
     
