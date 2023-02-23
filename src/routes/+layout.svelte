@@ -5,13 +5,14 @@
 	import About from './components/About.svelte';
 	import Skills from './components/Skills.svelte';
 	import Contact from './components/Contact.svelte';
+	import Projects from './components/Projects.svelte';
 </script>
 
 <body class="bg-white dark:bg-gray-800 min-h-full">
 	<Header />
     <About/>
+    <Projects/>
     <Skills/>
     <Contact/>
-	<slot/>
     <Footer/>
 </body>
