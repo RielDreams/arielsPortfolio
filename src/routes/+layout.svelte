@@ -7,7 +7,7 @@
 	import Contact from './components/Contact.svelte';
 </script>
 
-<body class="bg-white dark:bg-gray-800">
+<body class="bg-white dark:bg-gray-800 min-h-full">
 	<Header />
     <About/>
     <Skills/>
