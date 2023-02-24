@@ -12,7 +12,7 @@
   </script>
 
 
-<div class="flex flex-wrap justify-center item-center">
+<div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 min-w-full p-4">
 
     <div class='min-w-full text-center '>
         <h1 class='text-2xl'>Get in touch!</h1>

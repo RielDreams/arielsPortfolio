@@ -1,4 +1,4 @@
-<div class='flex flex-wrap justify-center min-w-full text-center'>
+<div class='flex flex-wrap justify-center min-w-full text-center dark:text-gray-200 p-4'>
     <div class='flex flex-wrap justify-center' style="width:15rem">
         <h1 class='min-w-full'>AnimeWatch</h1>
         <h2 class='min-w-full'>JavaScript | CSS | HTML </h2>

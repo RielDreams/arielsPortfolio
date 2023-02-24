@@ -2,7 +2,7 @@
 import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from 'flowbite-svelte'
 </script>
 
-<div class="home flex flex flex-wrap mb-10 bg-blue-100" style="height:25rem">
+<div class="home flex flex flex-wrap mb-10  bg-blue-100 dark:bg-gray-200 pb-12 min-w-full" style="height:25rem">
       <Navbar let:hidden let:toggle rounded color="form" class='min-w-full' style='height:5rem'>
         <NavBrand href="/">
             <DarkMode class="text-lg">
@@ -26,7 +26,7 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
         </NavUl>
       </Navbar>
 
-    <div class="flex flex-wrap justify-center min-w-full">
+    <div class="flex flex-wrap justify-center min-w-full items-top p-4 m-4">
         <h1 class='text-5xl min-w-full text-center'>Ariel fernandez</h1>
         <h3 class='text-3xl min-w-full text-center -my-5' >Software Engineer - NYC area</h3>
         <h4 class='text-lg min-w-full text-center -my-1'>i love to create and build things using code</h4>
