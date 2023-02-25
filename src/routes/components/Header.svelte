@@ -2,8 +2,8 @@
 import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from 'flowbite-svelte'
 </script>
 
-<div class="home flex flex flex-wrap mb-10  bg-blue-100 dark:bg-gray-200 pb-12 min-w-full" style="height:25rem">
-      <Navbar let:hidden let:toggle rounded color="form" class='min-w-full' style='height:5rem'>
+<div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem">
+      <Navbar let:hidden let:toggle rounded color="none" class='min-w-full' style='height:5rem'>
         <NavBrand href="/">
             <DarkMode class="text-lg">
                 <svelte:fragment slot="lightIcon">
@@ -18,7 +18,7 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
         <NavHamburger class1="w-full md:flex md:w-auto md:order-1" on:click={toggle} />
         </div>
         <NavUl {hidden}>
-          <NavLi href="/" active={true}>Home</NavLi>
+          <NavLi href="/">Home</NavLi>
           <NavLi href="/about">About</NavLi>
           <NavLi href="/services">Projects</NavLi>
           <NavLi href="/pricing">Skills</NavLi>
