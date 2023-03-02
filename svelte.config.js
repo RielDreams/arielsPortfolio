@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-node';
  
 const dev = process.argv.includes('dev');
  
@@ -8,8 +8,8 @@ const config = {
   kit: {
     adapter: adapter(),
     paths: {
-      base: dev ? '' : '/arielsPortfolio',
-    }
+      base: process.env.NODE_ENV === "production" ? "/sveltekit-gh-pages" : "",
+      },
   },
 	preprocess: [
 		preprocess({
