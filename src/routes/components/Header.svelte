@@ -27,9 +27,9 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
       </Navbar>
 
     <div class="flex flex-wrap justify-center min-w-full items-top p-4 m-4">
-        <h1 class='text-5xl min-w-full text-center'>Ariel fernandez</h1>
+        <h1 class='text-5xl min-w-full text-center'>Ariel Fernandez</h1>
         <h3 class='text-3xl min-w-full text-center -my-5' >Software Engineer - NYC area</h3>
-        <h4 class='text-lg min-w-full text-center -my-1'>i love to create and build things using code</h4>
+        <h4 class='text-lg min-w-full text-center -my-1'>I love to create and build things using code</h4>
         <div class='min-w-full flex flex-wrap justify-center gap-1' style="height:1rem">
         <Button>LinkedIn</Button>
         <Button>GitHub</Button>
