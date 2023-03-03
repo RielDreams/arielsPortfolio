@@ -1,7 +1,7 @@
 <div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 p-4 min-w-full">
 
-<h1 class='text-4xl'>Languages & Technologies I'm comfortable with </h1>
-<div class='flex flex-wrap min-w-full justify-center gap-6'>
+<h1 class='text-4xl mb-16 mt-8'>Experienced working with the following languages and technologies: </h1>
+<div class='flex flex-wrap min-w-full justify-center gap-6 mt-15'>
     <div>
         <svg xmlns="http://www.w3.org/2000/svg" aria-label="JavaScript" role="img" viewBox="0 0 512 512" width="64px" height="64px" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><rect width="512" height="512" rx="15%" fill="#f7df1e"></rect><path d="M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"></path></g></svg>
         <p>JavaScript</p>
@@ -56,6 +56,6 @@
         <p>HTML</p>
     </div>
 </div>
-<h1>honorable mentions</h1>
+<h1 class='mt-10'>honorable mentions</h1>
 
 </div>

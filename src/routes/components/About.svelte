@@ -43,6 +43,6 @@
         </p>
     </div>  
     <div class="min-w-5xl flex justify-center items-center">
-        <Carousel {images} loop {showCaptions} {showThumbs} {showIndicators} {slideControls} duration="3000"/>
+        <Carousel {images} loop {showCaptions} {showThumbs} {showIndicators} {slideControls}  duration="3000"/>
     </div>
 </div>

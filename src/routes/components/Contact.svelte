@@ -15,8 +15,8 @@
 <div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 min-w-full p-4">
 
     <div class='min-w-full text-center '>
-        <h1 class='text-2xl'>Get in touch!</h1>
-        <h2>Feel free to reach me in your preferred way below or send me a message using the form</h2>
+        <h1 class='text-2xl'>Reach out!</h1>
+        <h2>Don't hesitate to get in touch with me via your preferred method or the provided contact form.</h2>
         <h2>We can connect on <a class='text-blue-500' href="https://www.linkedin.com/in/arielfernandez412/">LinkedIn</a>,</h2>
         <h2>we can also connect through <a class='text-blue-500' href="mailto:Arielf412@me.com?subject=Your%20portfolio%20is%20AWESOME!%20Lets%20Connect!&amp;body=Hey%20Ariel!%0D%0A%0D%0A%0D%0AMy%20name%20is%20<YourName>,%20and%20I'm%20in%20the%20business%20of%20<Industry you work in>.%0D%0AI’d%20love%20to%20talk%20about%20your%20software%20engineering%20ambitions.%20">Email</a> </h2>
     </div>

@@ -1,5 +1,10 @@
+<script>
+</script>
+
+
 <div class='flex flex-wrap justify-center min-w-full text-center dark:text-gray-200 p-4'>
     <div class='flex flex-wrap justify-center' style="width:15rem">
+        <img src="https://i.imgur.com/KLu5a5o.gif" alt="">
         <h1 class='min-w-full'>AnimeWatch</h1>
         <h2 class='min-w-full'>JavaScript | CSS | HTML </h2>
         <div class='min-w-full'>
@@ -8,6 +13,8 @@
         </div>
     </div>
     <div class='flex flex-wrap justify-center' style="width:15rem">
+        <img src="https://i.imgur.com/bVCqMTC.gif" alt="">
+        <!-- TODO: fix bloomboards gif -->
         <h1 class='min-w-full'>BloomBoards</h1>
         <h2 class='min-w-full'>React | Express | JavaScript </h2>
         <div class='min-w-full'>
