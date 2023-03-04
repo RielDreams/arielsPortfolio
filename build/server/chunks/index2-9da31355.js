@@ -51,6 +51,9 @@ function get_current_component() {
     throw new Error("Function called outside component initialization");
   return current_component;
 }
+function onDestroy(fn) {
+  get_current_component().$$.on_destroy.push(fn);
+}
 function createEventDispatcher() {
   const component = get_current_component();
   return (type, detail, { cancelable = false } = {}) => {
@@ -254,5 +257,5 @@ function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
 
-export { safe_not_equal as a, compute_rest_props as b, create_ssr_component as c, spread as d, escape_attribute_value as e, escape_object as f, getContext as g, add_attribute as h, is_void as i, each as j, escape as k, createEventDispatcher as l, missing_component as m, noop as n, compute_slots as o, null_to_empty as p, subscribe as q, setContext as s, validate_component as v };
-//# sourceMappingURL=index-996272d7.js.map
+export { compute_rest_props as a, spread as b, create_ssr_component as c, escape_object as d, escape_attribute_value as e, add_attribute as f, getContext as g, each as h, is_void as i, escape as j, createEventDispatcher as k, subscribe as l, missing_component as m, compute_slots as n, onDestroy as o, noop as p, null_to_empty as q, safe_not_equal as r, setContext as s, validate_component as v };
+//# sourceMappingURL=index2-9da31355.js.map

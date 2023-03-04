@@ -1324,6 +1324,9 @@ input[type="range"].range-lg::-moz-range-thumb {
 .max-w-2xl {
   max-width: 42rem;
 }
+.max-w-3xl {
+  max-width: 48rem;
+}
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -5041,4 +5044,4 @@ input[type="range"].range-lg::-moz-range-thumb {
     height: 24rem;
   }
 }
-.active.svelte-1o2b5yq{opacity:1}.active.svelte-1o2b5yq{opacity:1}
+.active.svelte-1o2b5yq{opacity:1}.active.svelte-1o2b5yq{opacity:1}.card-header.svelte-yon7im{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}ul.svelte-da9j5z{list-style:none;padding-left:0}.accordion-item-header.svelte-13br4ya{-webkit-user-select:none;-moz-user-select:none;user-select:none;cursor:pointer}
