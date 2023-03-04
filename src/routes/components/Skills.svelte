@@ -1,4 +1,4 @@
-<div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 p-4 min-w-full">
+<div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 p-4 min-w-full" id='skills'>
 
 <h1 class='text-4xl mb-16 mt-8'>Experienced working with the following languages and technologies: </h1>
 <div class='flex flex-wrap min-w-full justify-center gap-6 mt-15'>

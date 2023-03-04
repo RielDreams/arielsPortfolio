@@ -14,7 +14,7 @@
 
 <div class="flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 min-w-full p-4">
 
-    <div class='min-w-full text-center '>
+    <div class='min-w-full text-center ' id='contact'>
         <h1 class='text-2xl'>Reach out!</h1>
         <h2>Don't hesitate to get in touch with me via your preferred method or the provided contact form.</h2>
         <h2>We can connect on <a class='text-blue-500' href="https://www.linkedin.com/in/arielfernandez412/">LinkedIn</a>,</h2>

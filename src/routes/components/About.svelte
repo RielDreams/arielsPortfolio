@@ -27,7 +27,7 @@
   </script>
 
 
-<div class='text-center min-w-full dark:text-gray-200 p-4 grid grid-cols-2'>
+<div class='text-center min-w-full dark:text-gray-200 p-4 grid grid-cols-2' id='about'>
     <div class='flex flex-wrap justify-center items-center p-10 text-lg'>
         <p class='mb-2'>My name is Ariel Fernandez, and I'm a bilingual software engineer with a strong background in law enforcement. I'm passionate about problem-solving and delivering high-quality solutions.
         </p>
@@ -39,7 +39,7 @@
             Thanks for taking the time to learn a little more about me, and I hope we have the opportunity to work together soon!
         </p>
     </div>  
-    <div class="min-w-5xl flex justify-center items-center">
+    <div class="min-w-5xl flex justify-center items-center ">
         <Carousel {images} loop {showCaptions} {showThumbs} {showIndicators} {slideControls}  duration="3000"/>
     </div>
 </div>

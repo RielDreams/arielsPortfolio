@@ -1,9 +1,14 @@
 <script>
 import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button, Modal } from 'flowbite-svelte'
 let defaultModal = false;
+
+function scrollToAnchor(anchor) {
+    const element = document.getElementById(anchor);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 
-<div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem">
+<div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem" id='home'>
       <Navbar let:hidden let:toggle rounded color="none" class='min-w-full' style='height:5rem'>
         <NavBrand href="/">
             <DarkMode class="text-lg">
@@ -19,11 +24,11 @@ let defaultModal = false;
         <NavHamburger class1="w-full md:flex md:w-auto md:order-1" on:click={toggle} />
         </div>
         <NavUl {hidden}>
-          <NavLi href="/">Home</NavLi>
-          <NavLi href="/about">About</NavLi> 
-          <NavLi href="/services">Projects</NavLi>
-          <NavLi href="/pricing">Skills</NavLi>
-          <NavLi href="/contact">Contact</NavLi>
+          <NavLi on:click={() => scrollToAnchor('home')}>Home</NavLi>
+          <NavLi on:click={() => scrollToAnchor('about')}>About</NavLi> 
+          <NavLi on:click={() => scrollToAnchor('projects')}>Projects</NavLi>
+          <NavLi on:click={() => scrollToAnchor('skills')}>Skills</NavLi>
+          <NavLi on:click={() => scrollToAnchor('contact')}>Contact</NavLi>
         </NavUl>
       </Navbar>
 
