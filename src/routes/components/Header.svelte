@@ -32,7 +32,7 @@ function scrollToAnchor(anchor) {
         </NavUl>
       </Navbar>
 
-    <div class="flex flex-wrap justify-center min-w-full items-top p-4 m-4">
+    <div class="flex flex-wrap justify-center min-w-full items-top m-4">
         <h1 class='text-5xl min-w-full text-center'>Ariel Fernandez</h1>
         <h3 class='text-3xl min-w-full text-center -my-5' >Software Engineer - NYC area</h3>
         <h4 class='text-lg min-w-full text-center -my-1'>I have a deep interest in coding and the ability to use it to build and create</h4>

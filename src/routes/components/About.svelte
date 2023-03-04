@@ -25,8 +25,8 @@
 	let slideControls = false;
 </script>
 
-<div class="text-center min-w-full dark:text-gray-200 p-4 flex justify-center items center " id="about">
-	<div class="flex flex-wrap justify-center items-center p-10 text-lg max-w-3xl">
+<div class="text-center min-w-[40%] dark:text-gray-200 p-4 grid grid-cols-2" id="about">
+	<div class="flex flex-wrap justify-center items-center p-10 text-lg max-w-xl ">
 		<p class="mb-2">
 			My name is Ariel Fernandez, and I'm a bilingual software engineer with a strong background in
 			law enforcement. I'm passionate about problem-solving and delivering high-quality solutions.
@@ -46,7 +46,7 @@
 			we have the opportunity to work together soon!
 		</p>
 	</div>
-	<div class="min-w-5xl flex justify-center items-center ">
+	<div class=" flex justify-center items-center ">
 		<Carousel
 			{images}
 			loop
