@@ -1,4 +1,4 @@
-import { c as create_ssr_component, v as validate_component, b as compute_rest_props, g as getContext, d as spread, e as escape_attribute_value, f as escape_object, i as is_void, h as add_attribute, j as each, k as escape, s as setContext, l as compute_slots, n as noop, o as null_to_empty } from './index-d4696e9d.js';
+import { c as create_ssr_component, v as validate_component, b as compute_rest_props, g as getContext, d as spread, e as escape_attribute_value, f as escape_object, i as is_void, h as add_attribute, j as each, k as escape, l as createEventDispatcher, s as setContext, o as compute_slots, n as noop, p as null_to_empty } from './index-996272d7.js';
 
 var classnamesExports = {};
 var classnames = {
@@ -187,6 +187,52 @@ function sineIn(t) {
   else
     return 1 - v;
 }
+const CloseButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  const background = getContext("background");
+  let { color = "default" } = $$props;
+  let { name = "Close" } = $$props;
+  let { size = "md" } = $$props;
+  const colors = {
+    dark: "hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600",
+    gray: "focus:ring-gray-400 hover:bg-gray-200 dark:hover:bg-gray-300",
+    red: "focus:ring-red-400 hover:bg-red-200 dark:hover:bg-red-300",
+    yellow: "focus:ring-yellow-400 hover:bg-yellow-200 dark:hover:bg-yellow-300",
+    green: "focus:ring-green-400 hover:bg-green-200 dark:hover:bg-green-300",
+    indigo: "focus:ring-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-300",
+    purple: "focus:ring-purple-400 hover:bg-purple-200 dark:hover:bg-purple-300",
+    pink: "focus:ring-pink-400 hover:bg-pink-200 dark:hover:bg-pink-300",
+    blue: "focus:ring-blue-400 hover:bg-blue-200 dark:hover:bg-blue-300",
+    default: "focus:ring-gray-300 "
+  };
+  const sizing = {
+    xs: "m-0.5 rounded focus:ring-1 p-0.5",
+    sm: "m-0.5 rounded focus:ring-1 p-0.5",
+    md: "rounded-lg focus:ring-2 p-1.5"
+  };
+  let buttonClass = "";
+  const svgSizes = {
+    xs: "w-3 h-3",
+    sm: "w-3.5 h-3.5",
+    md: "w-5 h-5"
+  };
+  if ($$props.color === void 0 && $$bindings.color && color !== void 0)
+    $$bindings.color(color);
+  if ($$props.name === void 0 && $$bindings.name && name !== void 0)
+    $$bindings.name(name);
+  if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+    $$bindings.size(size);
+  buttonClass = classNames(
+    "ml-auto focus:outline-none whitespace-normal",
+    sizing[size],
+    colors[color],
+    color === "default" && (background ? "hover:bg-gray-100 dark:hover:bg-gray-600" : "hover:bg-gray-100 dark:hover:bg-gray-700"),
+    $$props.class
+  );
+  return `<button type="${"button"}"${add_attribute("class", buttonClass, 0)} aria-label="${"Close"}">${slots.default ? slots.default({}) : `
+    <span class="${"sr-only"}">${escape(name)}</span>
+    <svg${add_attribute("class", svgSizes[size], 0)} fill="${"currentColor"}" viewBox="${"0 0 20 20"}" xmlns="${"http://www.w3.org/2000/svg"}"><path fill-rule="${"evenodd"}" d="${"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"}" clip-rule="${"evenodd"}"></path></svg>
+  `}</button>`;
+});
 const Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["pill", "outline", "gradient", "size", "href", "btnClass", "type", "color", "shadow"]);
   const group = getContext("group");
@@ -882,6 +928,126 @@ const Textarea = create_ssr_component(($$result, $$props, $$bindings, slots) => 
     }
   })}`;
 });
+const Modal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $$restProps = compute_rest_props($$props, ["open", "title", "size", "placement", "autoclose", "permanent", "backdropClasses"]);
+  let $$slots = compute_slots(slots);
+  let { open = false } = $$props;
+  let { title = "" } = $$props;
+  let { size = "md" } = $$props;
+  let { placement = "center" } = $$props;
+  let { autoclose = false } = $$props;
+  let { permanent = false } = $$props;
+  let { backdropClasses = "bg-gray-900 bg-opacity-50 dark:bg-opacity-80" } = $$props;
+  const dispatch = createEventDispatcher();
+  const getPlacementClasses = () => {
+    switch (placement) {
+      case "top-left":
+        return ["justify-start", "items-start"];
+      case "top-center":
+        return ["justify-center", "items-start"];
+      case "top-right":
+        return ["justify-end", "items-start"];
+      case "center-left":
+        return ["justify-start", "items-center"];
+      case "center":
+        return ["justify-center", "items-center"];
+      case "center-right":
+        return ["justify-end", "items-center"];
+      case "bottom-left":
+        return ["justify-start", "items-end"];
+      case "bottom-center":
+        return ["justify-center", "items-end"];
+      case "bottom-right":
+        return ["justify-end", "items-end"];
+      default:
+        return ["justify-center", "items-center"];
+    }
+  };
+  const sizes = {
+    xs: "max-w-md",
+    sm: "max-w-lg",
+    md: "max-w-2xl",
+    lg: "max-w-4xl",
+    xl: "max-w-7xl"
+  };
+  let frameClass;
+  if ($$props.open === void 0 && $$bindings.open && open !== void 0)
+    $$bindings.open(open);
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+    $$bindings.size(size);
+  if ($$props.placement === void 0 && $$bindings.placement && placement !== void 0)
+    $$bindings.placement(placement);
+  if ($$props.autoclose === void 0 && $$bindings.autoclose && autoclose !== void 0)
+    $$bindings.autoclose(autoclose);
+  if ($$props.permanent === void 0 && $$bindings.permanent && permanent !== void 0)
+    $$bindings.permanent(permanent);
+  if ($$props.backdropClasses === void 0 && $$bindings.backdropClasses && backdropClasses !== void 0)
+    $$bindings.backdropClasses(backdropClasses);
+  {
+    dispatch(open ? "open" : "hide");
+  }
+  frameClass = classNames("relative flex flex-col mx-auto", $$props.class);
+  return `${open ? `
+  <div${add_attribute("class", classNames("fixed inset-0 z-40", backdropClasses), 0)}></div>
+  
+  <div${add_attribute("class", classNames("fixed top-0 left-0 right-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex", ...getPlacementClasses()), 0)} tabindex="${"-1"}" aria-modal="${"true"}" role="${"dialog"}"><div class="${"flex relative " + escape(sizes[size], true) + " w-full max-h-full"}">
+      ${validate_component(Frame, "Frame").$$render($$result, Object.assign({}, { rounded: true }, { shadow: true }, $$restProps, { class: frameClass }), {}, {
+    default: () => {
+      return `
+        ${$$slots.header || title ? `${validate_component(Frame, "Frame").$$render(
+        $$result,
+        {
+          color: $$restProps.color,
+          class: "flex justify-between items-center p-4 rounded-t border-b"
+        },
+        {},
+        {
+          default: () => {
+            return `${slots.header ? slots.header({}) : `
+              <h3 class="${"text-xl font-semibold " + escape($$restProps.color ? "" : "text-gray-900 dark:text-white", true) + " p-0"}">${escape(title)}</h3>
+            `}
+            ${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render(
+              $$result,
+              {
+                name: "Close modal",
+                color: $$restProps.color
+              },
+              {},
+              {}
+            )}` : ``}`;
+          }
+        }
+      )}` : `${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render(
+        $$result,
+        {
+          name: "Close modal",
+          class: "absolute top-3 right-2.5",
+          color: $$restProps.color
+        },
+        {},
+        {}
+      )}` : ``}`}
+        
+        <div id="${"modal"}" class="${"p-6 space-y-6 flex-1 overflow-y-auto overscroll-contain"}">${slots.default ? slots.default({}) : ``}</div>
+        
+        ${$$slots.footer ? `${validate_component(Frame, "Frame").$$render(
+        $$result,
+        {
+          color: $$restProps.color,
+          class: "flex items-center p-6 space-x-2 rounded-b border-t"
+        },
+        {},
+        {
+          default: () => {
+            return `${slots.footer ? slots.footer({}) : ``}`;
+          }
+        }
+      )}` : ``}`;
+    }
+  })}</div></div>` : ``}`;
+});
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["navClass", "navDivClass", "fluid", "color"]);
   let { navClass = "px-2 sm:px-4 py-2.5 w-full" } = $$props;
@@ -1138,96 +1304,122 @@ const NavUl = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   )}><ul${add_attribute("class", _ulClass, 0)}>${slots.default ? slots.default({}) : ``}</ul></div>`}`;
 });
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="${"home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200 pb-12 min-w-full"}" style="${"height:25rem"}">${validate_component(Navbar, "Navbar").$$render(
-    $$result,
-    {
-      rounded: true,
-      color: "none",
-      class: "min-w-full",
-      style: "height:5rem"
-    },
-    {},
-    {
-      default: ({ hidden, toggle }) => {
-        return `${validate_component(NavBrand, "NavBrand").$$render($$result, { href: "/" }, {}, {
-          default: () => {
-            return `${validate_component(DarkMode, "DarkMode").$$render($$result, { class: "text-lg" }, {}, {
-              darkIcon: () => {
-                return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3Z"}"></path></svg>
+  let defaultModal = false;
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `<div class="${"home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200 pb-12 min-w-full"}" style="${"height:25rem"}">${validate_component(Navbar, "Navbar").$$render(
+      $$result,
+      {
+        rounded: true,
+        color: "none",
+        class: "min-w-full",
+        style: "height:5rem"
+      },
+      {},
+      {
+        default: ({ hidden, toggle }) => {
+          return `${validate_component(NavBrand, "NavBrand").$$render($$result, { href: "/" }, {}, {
+            default: () => {
+              return `${validate_component(DarkMode, "DarkMode").$$render($$result, { class: "text-lg" }, {}, {
+                darkIcon: () => {
+                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3Z"}"></path></svg>
                 `;
-              },
-              lightIcon: () => {
-                return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6ZM5.394 6.813L6.81 5.399l3.505 3.506L8.9 10.319zM2 15.005h5v2H2zm3.394 10.193L8.9 21.692l1.414 1.414l-3.505 3.506zM15 25.005h2v5h-2zm6.687-1.9l1.414-1.414l3.506 3.506l-1.414 1.414zm3.313-8.1h5v2h-5zm-3.313-6.101l3.506-3.506l1.414 1.414l-3.506 3.506zM15 2.005h2v5h-2z"}"></path></svg>`;
-              }
-            })}`;
-          }
-        })}
+                },
+                lightIcon: () => {
+                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6ZM5.394 6.813L6.81 5.399l3.505 3.506L8.9 10.319zM2 15.005h5v2H2zm3.394 10.193L8.9 21.692l1.414 1.414l-3.505 3.506zM15 25.005h2v5h-2zm6.687-1.9l1.414-1.414l3.506 3.506l-1.414 1.414zm3.313-8.1h5v2h-5zm-3.313-6.101l3.506-3.506l1.414 1.414l-3.506 3.506zM15 2.005h2v5h-2z"}"></path></svg>`;
+                }
+              })}`;
+            }
+          })}
         <div class="${"flex items-center md:order-2"}">${validate_component(NavHamburger, "NavHamburger").$$render(
-          $$result,
-          {
-            class1: "w-full md:flex md:w-auto md:order-1"
-          },
-          {},
-          {}
-        )}</div>
+            $$result,
+            {
+              class1: "w-full md:flex md:w-auto md:order-1"
+            },
+            {},
+            {}
+          )}</div>
         ${validate_component(NavUl, "NavUl").$$render($$result, { hidden }, {}, {
-          default: () => {
-            return `${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
-              default: () => {
-                return `Home`;
-              }
-            })}
+            default: () => {
+              return `${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
+                default: () => {
+                  return `Home`;
+                }
+              })}
           ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/about" }, {}, {
-              default: () => {
-                return `About`;
-              }
-            })} 
+                default: () => {
+                  return `About`;
+                }
+              })} 
           ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/services" }, {}, {
-              default: () => {
-                return `Projects`;
-              }
-            })}
+                default: () => {
+                  return `Projects`;
+                }
+              })}
           ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/pricing" }, {}, {
-              default: () => {
-                return `Skills`;
-              }
-            })}
+                default: () => {
+                  return `Skills`;
+                }
+              })}
           ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/contact" }, {}, {
-              default: () => {
-                return `Contact`;
-              }
-            })}`;
-          }
-        })}`;
+                default: () => {
+                  return `Contact`;
+                }
+              })}`;
+            }
+          })}`;
+        }
       }
-    }
-  )}
+    )}
 
     <div class="${"flex flex-wrap justify-center min-w-full items-top p-4 m-4"}"><h1 class="${"text-5xl min-w-full text-center"}">Ariel Fernandez</h1>
         <h3 class="${"text-3xl min-w-full text-center -my-5"}">Software Engineer - NYC area</h3>
         <h4 class="${"text-lg min-w-full text-center -my-1"}">I have a deep interest in coding and the ability to use it to build and create</h4>
         <div class="${"min-w-full flex flex-wrap justify-center gap-1"}" style="${"height:1rem"}">${validate_component(Button, "Button").$$render(
-    $$result,
-    {
-      href: "https://www.linkedin.com/in/arielfernandez412/"
-    },
-    {},
-    {
-      default: () => {
-        return `LinkedIn`;
+      $$result,
+      {
+        href: "https://www.linkedin.com/in/arielfernandez412/"
+      },
+      {},
+      {
+        default: () => {
+          return `LinkedIn`;
+        }
       }
-    }
-  )}
+    )}
         ${validate_component(Button, "Button").$$render($$result, {}, {}, {
-    default: () => {
-      return `Resume`;
-    }
-  })}
-        ${validate_component(Button, "Button").$$render($$result, { href: "https://github.com/RielDreams" }, {}, {
-    default: () => {
-      return `GitHub`;
-    }
-  })}</div></div></div>`;
+      default: () => {
+        return `Resume`;
+      }
+    })}
+        ${validate_component(Modal, "Modal").$$render(
+      $$result,
+      {
+        title: "Ariels Resume",
+        autoclose: true,
+        open: defaultModal
+      },
+      {
+        open: ($$value) => {
+          defaultModal = $$value;
+          $$settled = false;
+        }
+      },
+      {
+        default: () => {
+          return `<img src="${"https://i.imgur.com/Iw1YXTf.jpg"}" alt="${""}">`;
+        }
+      }
+    )}
+          ${validate_component(Button, "Button").$$render($$result, { href: "https://github.com/RielDreams" }, {}, {
+      default: () => {
+        return `GitHub`;
+      }
+    })}</div></div></div>`;
+  } while (!$$settled);
+  return $$rendered;
 });
 const Footer_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Footer, "Footer").$$render(
@@ -1264,18 +1456,13 @@ const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       id: 2,
       name: "GSXR",
       imgurl: "https://i.imgur.com/boyhlkQm.jpg"
-    },
-    {
-      id: 3,
-      name: "Olivers first farm day",
-      imgurl: "https://i.imgur.com/CGNcoZnm.jpg"
     }
   ];
   if ($$props.images === void 0 && $$bindings.images && images !== void 0)
     $$bindings.images(images);
-  return `<div class="${"text-center min-w-full dark:text-gray-200 p-4 grid grid-cols-2"}"><div><p>My name is Ariel Fernandez, and I&#39;m a bilingual software engineer with a strong background in law enforcement. I&#39;m passionate about problem-solving and delivering high-quality solutions.
+  return `<div class="${"text-center min-w-full dark:text-gray-200 p-4 grid grid-cols-2"}"><div class="${"flex flex-wrap justify-center items-center p-10 text-lg"}"><p class="${"mb-2"}">My name is Ariel Fernandez, and I&#39;m a bilingual software engineer with a strong background in law enforcement. I&#39;m passionate about problem-solving and delivering high-quality solutions.
         </p>
-        <p>In addition to my professional work, I have a variety of hobbies that keep me engaged and creative. I&#39;m an avid photographer, and I love capturing cars and landscapes through my camera lens. I&#39;m also a dedicated reef keeper and aquarium enthusiast. When I&#39;m not exploring the great outdoors, you can often find me learning about 3D modeling in blender, working on my reef tank or working on my project cars.
+        <p class="${"mb-2"}">In addition to my professional work, I have a variety of hobbies that keep me engaged and creative. I&#39;m an avid photographer, and I love capturing cars and landscapes through my camera lens. I&#39;m also a dedicated reef keeper and aquarium enthusiast. When I&#39;m not exploring the great outdoors, you can often find me learning about 3D modeling in blender, working on my reef tank or working on my project cars.
         </p>
         <p>My hobbies reflect my love of creating and building, and I bring that same passion to my work as a software engineer. Whether I&#39;m developing new applications, solving complex problems, or building innovative solutions, I&#39;m committed to excellence and always striving to deliver the best possible results.
             Thanks for taking the time to learn a little more about me, and I hope we have the opportunity to work together soon!
@@ -1477,4 +1664,4 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Layout as default };
-//# sourceMappingURL=_layout.svelte-111960e6.js.map
+//# sourceMappingURL=_layout.svelte-d66e8eb0.js.map
