@@ -1,5 +1,7 @@
 <script>
-    import { Carousel, CarouselTransition } from 'flowbite-svelte'
+  import { Carousel, CarouselTransition,} from 'flowbite-svelte'
+
+   // this is for slideshow
     export const images = [
     {
       id: 0,

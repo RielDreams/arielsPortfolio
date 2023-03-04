@@ -1,5 +1,6 @@
 <script>
-import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from 'flowbite-svelte'
+import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button, Modal } from 'flowbite-svelte'
+let defaultModal = false;
 </script>
 
 <div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem">
@@ -32,8 +33,11 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
         <h4 class='text-lg min-w-full text-center -my-1'>I have a deep interest in coding and the ability to use it to build and create</h4>
         <div class='min-w-full flex flex-wrap justify-center gap-1' style="height:1rem">
         <Button href='https://www.linkedin.com/in/arielfernandez412/'>LinkedIn</Button>
-        <Button>Resume</Button>
-        <Button href='https://github.com/RielDreams'>GitHub</Button>
+        <Button on:click={() => defaultModal = true}>Resume</Button>
+        <Modal title="Ariels Resume" bind:open={defaultModal} autoclose>
+          <img src="https://i.imgur.com/Iw1YXTf.jpg" alt="">
+        </Modal>
+          <Button href='https://github.com/RielDreams'>GitHub</Button>
     </div>
     </div>
 </div>
