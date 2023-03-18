@@ -37,6 +37,11 @@ function compute_slots(slots) {
 function null_to_empty(value) {
   return value == null ? "" : value;
 }
+function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+  const e = document.createEvent("CustomEvent");
+  e.initCustomEvent(type, bubbles, cancelable, detail);
+  return e;
+}
 let current_component;
 function set_current_component(component) {
   current_component = component;
@@ -45,6 +50,23 @@ function get_current_component() {
   if (!current_component)
     throw new Error("Function called outside component initialization");
   return current_component;
+}
+function onDestroy(fn) {
+  get_current_component().$$.on_destroy.push(fn);
+}
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail, { cancelable = false } = {}) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(type, detail, { cancelable });
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+      return !event.defaultPrevented;
+    }
+    return true;
+  };
 }
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
@@ -235,5 +257,5 @@ function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
 
-export { safe_not_equal as a, compute_rest_props as b, create_ssr_component as c, spread as d, escape_attribute_value as e, escape_object as f, getContext as g, add_attribute as h, is_void as i, each as j, escape as k, compute_slots as l, missing_component as m, noop as n, null_to_empty as o, subscribe as p, setContext as s, validate_component as v };
-//# sourceMappingURL=index-d4696e9d.js.map
+export { compute_rest_props as a, spread as b, create_ssr_component as c, escape_object as d, escape_attribute_value as e, add_attribute as f, getContext as g, each as h, is_void as i, escape as j, createEventDispatcher as k, subscribe as l, missing_component as m, compute_slots as n, onDestroy as o, noop as p, null_to_empty as q, safe_not_equal as r, setContext as s, validate_component as v };
+//# sourceMappingURL=index2-9da31355.js.map

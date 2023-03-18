@@ -3,6 +3,6 @@
   </script>
   
 
-  <Footer footerType="logo" class="bottom-0 left-0 z-20 w-full">
+  <Footer footerType="logo" class="bottom-0 left-0 z-20 w-full ">
     <FooterCopyright href="/" by="RielDreams™" year={2023} />
   </Footer>

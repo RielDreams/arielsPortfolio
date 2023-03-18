@@ -1,4 +1,5 @@
-import { c as create_ssr_component, v as validate_component, b as compute_rest_props, g as getContext, d as spread, e as escape_attribute_value, f as escape_object, i as is_void, h as add_attribute, j as each, k as escape, s as setContext, l as compute_slots, n as noop, o as null_to_empty } from './index-d4696e9d.js';
+import { c as create_ssr_component, v as validate_component, a as compute_rest_props, g as getContext, b as spread, e as escape_attribute_value, d as escape_object, i as is_void, f as add_attribute, h as each, j as escape, k as createEventDispatcher, s as setContext, o as onDestroy, l as subscribe, n as compute_slots, p as noop, q as null_to_empty } from './index2-9da31355.js';
+import { w as writable } from './index-bb80ef66.js';
 
 var classnamesExports = {};
 var classnames = {
@@ -187,6 +188,52 @@ function sineIn(t) {
   else
     return 1 - v;
 }
+const CloseButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  const background = getContext("background");
+  let { color = "default" } = $$props;
+  let { name = "Close" } = $$props;
+  let { size = "md" } = $$props;
+  const colors = {
+    dark: "hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600",
+    gray: "focus:ring-gray-400 hover:bg-gray-200 dark:hover:bg-gray-300",
+    red: "focus:ring-red-400 hover:bg-red-200 dark:hover:bg-red-300",
+    yellow: "focus:ring-yellow-400 hover:bg-yellow-200 dark:hover:bg-yellow-300",
+    green: "focus:ring-green-400 hover:bg-green-200 dark:hover:bg-green-300",
+    indigo: "focus:ring-indigo-400 hover:bg-indigo-200 dark:hover:bg-indigo-300",
+    purple: "focus:ring-purple-400 hover:bg-purple-200 dark:hover:bg-purple-300",
+    pink: "focus:ring-pink-400 hover:bg-pink-200 dark:hover:bg-pink-300",
+    blue: "focus:ring-blue-400 hover:bg-blue-200 dark:hover:bg-blue-300",
+    default: "focus:ring-gray-300 "
+  };
+  const sizing = {
+    xs: "m-0.5 rounded focus:ring-1 p-0.5",
+    sm: "m-0.5 rounded focus:ring-1 p-0.5",
+    md: "rounded-lg focus:ring-2 p-1.5"
+  };
+  let buttonClass = "";
+  const svgSizes = {
+    xs: "w-3 h-3",
+    sm: "w-3.5 h-3.5",
+    md: "w-5 h-5"
+  };
+  if ($$props.color === void 0 && $$bindings.color && color !== void 0)
+    $$bindings.color(color);
+  if ($$props.name === void 0 && $$bindings.name && name !== void 0)
+    $$bindings.name(name);
+  if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+    $$bindings.size(size);
+  buttonClass = classNames(
+    "ml-auto focus:outline-none whitespace-normal",
+    sizing[size],
+    colors[color],
+    color === "default" && (background ? "hover:bg-gray-100 dark:hover:bg-gray-600" : "hover:bg-gray-100 dark:hover:bg-gray-700"),
+    $$props.class
+  );
+  return `<button type="${"button"}"${add_attribute("class", buttonClass, 0)} aria-label="${"Close"}">${slots.default ? slots.default({}) : `
+    <span class="${"sr-only"}">${escape(name)}</span>
+    <svg${add_attribute("class", svgSizes[size], 0)} fill="${"currentColor"}" viewBox="${"0 0 20 20"}" xmlns="${"http://www.w3.org/2000/svg"}"><path fill-rule="${"evenodd"}" d="${"M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"}" clip-rule="${"evenodd"}"></path></svg>
+  `}</button>`;
+});
 const Button = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["pill", "outline", "gradient", "size", "href", "btnClass", "type", "color", "shadow"]);
   const group = getContext("group");
@@ -328,7 +375,7 @@ const Slide = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.slideClass(slideClass);
   return `<div${add_attribute("class", slideClass, 0)}><img${add_attribute("src", image, 0)}${add_attribute("alt", altTag, 0)}${add_attribute("title", attr, 0)}></div>`;
 });
-const css$1 = {
+const css$3 = {
   code: ".active.svelte-1o2b5yq{opacity:1}",
   map: null
 };
@@ -351,7 +398,7 @@ const Thumbnail = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.thumbWidth(thumbWidth);
   if ($$props.selected === void 0 && $$bindings.selected && selected !== void 0)
     $$bindings.selected(selected);
-  $$result.css.add(css$1);
+  $$result.css.add(css$3);
   return `
 <img class="${["opacity-40 svelte-1o2b5yq", selected ? "active" : ""].join(" ").trim()}"${add_attribute("id", id.toString(), 0)}${add_attribute("src", thumbImg, 0)}${add_attribute("alt", altTag, 0)} title="${"Image from " + escape(titleLink, true)}" width="${escape(thumbWidth, true) + "%"}">`;
 });
@@ -364,7 +411,7 @@ const Caption = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.captionClass(captionClass);
   return `<div${add_attribute("class", captionClass, 0)}><p id="${"caption"}" class="${"text-gray-900 dark:text-white"}">${escape(caption)}</p></div>`;
 });
-const css = {
+const css$2 = {
   code: ".active.svelte-1o2b5yq{opacity:1}",
   map: null
 };
@@ -378,7 +425,7 @@ const Indicator = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.selected(selected);
   if ($$props.indicatorClass === void 0 && $$bindings.indicatorClass && indicatorClass !== void 0)
     $$bindings.indicatorClass(indicatorClass);
-  $$result.css.add(css);
+  $$result.css.add(css$2);
   return `<button type="${"button"}" class="${[
     escape(null_to_empty(indicatorClass), true) + " svelte-1o2b5yq",
     selected ? "active" : ""
@@ -882,6 +929,126 @@ const Textarea = create_ssr_component(($$result, $$props, $$bindings, slots) => 
     }
   })}`;
 });
+const Modal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $$restProps = compute_rest_props($$props, ["open", "title", "size", "placement", "autoclose", "permanent", "backdropClasses"]);
+  let $$slots = compute_slots(slots);
+  let { open = false } = $$props;
+  let { title = "" } = $$props;
+  let { size = "md" } = $$props;
+  let { placement = "center" } = $$props;
+  let { autoclose = false } = $$props;
+  let { permanent = false } = $$props;
+  let { backdropClasses = "bg-gray-900 bg-opacity-50 dark:bg-opacity-80" } = $$props;
+  const dispatch = createEventDispatcher();
+  const getPlacementClasses = () => {
+    switch (placement) {
+      case "top-left":
+        return ["justify-start", "items-start"];
+      case "top-center":
+        return ["justify-center", "items-start"];
+      case "top-right":
+        return ["justify-end", "items-start"];
+      case "center-left":
+        return ["justify-start", "items-center"];
+      case "center":
+        return ["justify-center", "items-center"];
+      case "center-right":
+        return ["justify-end", "items-center"];
+      case "bottom-left":
+        return ["justify-start", "items-end"];
+      case "bottom-center":
+        return ["justify-center", "items-end"];
+      case "bottom-right":
+        return ["justify-end", "items-end"];
+      default:
+        return ["justify-center", "items-center"];
+    }
+  };
+  const sizes = {
+    xs: "max-w-md",
+    sm: "max-w-lg",
+    md: "max-w-2xl",
+    lg: "max-w-4xl",
+    xl: "max-w-7xl"
+  };
+  let frameClass;
+  if ($$props.open === void 0 && $$bindings.open && open !== void 0)
+    $$bindings.open(open);
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.size === void 0 && $$bindings.size && size !== void 0)
+    $$bindings.size(size);
+  if ($$props.placement === void 0 && $$bindings.placement && placement !== void 0)
+    $$bindings.placement(placement);
+  if ($$props.autoclose === void 0 && $$bindings.autoclose && autoclose !== void 0)
+    $$bindings.autoclose(autoclose);
+  if ($$props.permanent === void 0 && $$bindings.permanent && permanent !== void 0)
+    $$bindings.permanent(permanent);
+  if ($$props.backdropClasses === void 0 && $$bindings.backdropClasses && backdropClasses !== void 0)
+    $$bindings.backdropClasses(backdropClasses);
+  {
+    dispatch(open ? "open" : "hide");
+  }
+  frameClass = classNames("relative flex flex-col mx-auto", $$props.class);
+  return `${open ? `
+  <div${add_attribute("class", classNames("fixed inset-0 z-40", backdropClasses), 0)}></div>
+  
+  <div${add_attribute("class", classNames("fixed top-0 left-0 right-0 h-modal md:inset-0 md:h-full z-50 w-full p-4 flex", ...getPlacementClasses()), 0)} tabindex="${"-1"}" aria-modal="${"true"}" role="${"dialog"}"><div class="${"flex relative " + escape(sizes[size], true) + " w-full max-h-full"}">
+      ${validate_component(Frame, "Frame").$$render($$result, Object.assign({}, { rounded: true }, { shadow: true }, $$restProps, { class: frameClass }), {}, {
+    default: () => {
+      return `
+        ${$$slots.header || title ? `${validate_component(Frame, "Frame").$$render(
+        $$result,
+        {
+          color: $$restProps.color,
+          class: "flex justify-between items-center p-4 rounded-t border-b"
+        },
+        {},
+        {
+          default: () => {
+            return `${slots.header ? slots.header({}) : `
+              <h3 class="${"text-xl font-semibold " + escape($$restProps.color ? "" : "text-gray-900 dark:text-white", true) + " p-0"}">${escape(title)}</h3>
+            `}
+            ${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render(
+              $$result,
+              {
+                name: "Close modal",
+                color: $$restProps.color
+              },
+              {},
+              {}
+            )}` : ``}`;
+          }
+        }
+      )}` : `${!permanent ? `${validate_component(CloseButton, "CloseButton").$$render(
+        $$result,
+        {
+          name: "Close modal",
+          class: "absolute top-3 right-2.5",
+          color: $$restProps.color
+        },
+        {},
+        {}
+      )}` : ``}`}
+        
+        <div id="${"modal"}" class="${"p-6 space-y-6 flex-1 overflow-y-auto overscroll-contain"}">${slots.default ? slots.default({}) : ``}</div>
+        
+        ${$$slots.footer ? `${validate_component(Frame, "Frame").$$render(
+        $$result,
+        {
+          color: $$restProps.color,
+          class: "flex items-center p-6 space-x-2 rounded-b border-t"
+        },
+        {},
+        {
+          default: () => {
+            return `${slots.footer ? slots.footer({}) : ``}`;
+          }
+        }
+      )}` : ``}`;
+    }
+  })}</div></div>` : ``}`;
+});
 const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$restProps = compute_rest_props($$props, ["navClass", "navDivClass", "fluid", "color"]);
   let { navClass = "px-2 sm:px-4 py-2.5 w-full" } = $$props;
@@ -1138,91 +1305,129 @@ const NavUl = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   )}><ul${add_attribute("class", _ulClass, 0)}>${slots.default ? slots.default({}) : ``}</ul></div>`}`;
 });
 const Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="${"home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200 pb-12 min-w-full"}" style="${"height:25rem"}">${validate_component(Navbar, "Navbar").$$render(
-    $$result,
-    {
-      rounded: true,
-      color: "none",
-      class: "min-w-full",
-      style: "height:5rem"
-    },
-    {},
-    {
-      default: ({ hidden, toggle }) => {
-        return `${validate_component(NavBrand, "NavBrand").$$render($$result, { href: "/" }, {}, {
-          default: () => {
-            return `${validate_component(DarkMode, "DarkMode").$$render($$result, { class: "text-lg" }, {}, {
-              darkIcon: () => {
-                return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3Z"}"></path></svg>
+  let defaultModal = false;
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `<div class="${"home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200 pb-12 min-w-full"}" style="${"height:25rem"}" id="${"home"}">${validate_component(Navbar, "Navbar").$$render(
+      $$result,
+      {
+        rounded: true,
+        color: "none",
+        class: "min-w-full",
+        style: "height:5rem"
+      },
+      {},
+      {
+        default: ({ hidden, toggle }) => {
+          return `${validate_component(NavBrand, "NavBrand").$$render($$result, { href: "/" }, {}, {
+            default: () => {
+              return `${validate_component(DarkMode, "DarkMode").$$render($$result, { class: "text-lg" }, {}, {
+                darkIcon: () => {
+                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3Z"}"></path></svg>
                 `;
-              },
-              lightIcon: () => {
-                return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6ZM5.394 6.813L6.81 5.399l3.505 3.506L8.9 10.319zM2 15.005h5v2H2zm3.394 10.193L8.9 21.692l1.414 1.414l-3.505 3.506zM15 25.005h2v5h-2zm6.687-1.9l1.414-1.414l3.506 3.506l-1.414 1.414zm3.313-8.1h5v2h-5zm-3.313-6.101l3.506-3.506l1.414 1.414l-3.506 3.506zM15 2.005h2v5h-2z"}"></path></svg>`;
-              }
-            })}`;
-          }
-        })}
+                },
+                lightIcon: () => {
+                  return `<svg xmlns="${"http://www.w3.org/2000/svg"}" width="${"2em"}" height="${"2em"}" preserveAspectRatio="${"xMidYMid meet"}" viewBox="${"0 0 32 32"}"><path fill="${"currentColor"}" d="${"M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6ZM5.394 6.813L6.81 5.399l3.505 3.506L8.9 10.319zM2 15.005h5v2H2zm3.394 10.193L8.9 21.692l1.414 1.414l-3.505 3.506zM15 25.005h2v5h-2zm6.687-1.9l1.414-1.414l3.506 3.506l-1.414 1.414zm3.313-8.1h5v2h-5zm-3.313-6.101l3.506-3.506l1.414 1.414l-3.506 3.506zM15 2.005h2v5h-2z"}"></path></svg>`;
+                }
+              })}`;
+            }
+          })}
         <div class="${"flex items-center md:order-2"}">${validate_component(NavHamburger, "NavHamburger").$$render(
-          $$result,
-          {
-            class1: "w-full md:flex md:w-auto md:order-1"
-          },
-          {},
-          {}
-        )}</div>
+            $$result,
+            {
+              class1: "w-full md:flex md:w-auto md:order-1"
+            },
+            {},
+            {}
+          )}</div>
         ${validate_component(NavUl, "NavUl").$$render($$result, { hidden }, {}, {
-          default: () => {
-            return `${validate_component(NavLi, "NavLi").$$render($$result, { href: "/" }, {}, {
-              default: () => {
-                return `Home`;
-              }
-            })}
-          ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/about" }, {}, {
-              default: () => {
-                return `About`;
-              }
-            })}
-          ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/services" }, {}, {
-              default: () => {
-                return `Projects`;
-              }
-            })}
-          ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/pricing" }, {}, {
-              default: () => {
-                return `Skills`;
-              }
-            })}
-          ${validate_component(NavLi, "NavLi").$$render($$result, { href: "/contact" }, {}, {
-              default: () => {
-                return `Contact`;
-              }
-            })}`;
-          }
-        })}`;
+            default: () => {
+              return `${validate_component(NavLi, "NavLi").$$render($$result, {}, {}, {
+                default: () => {
+                  return `Home`;
+                }
+              })}
+          ${validate_component(NavLi, "NavLi").$$render($$result, {}, {}, {
+                default: () => {
+                  return `About`;
+                }
+              })} 
+          ${validate_component(NavLi, "NavLi").$$render($$result, {}, {}, {
+                default: () => {
+                  return `Projects`;
+                }
+              })}
+          ${validate_component(NavLi, "NavLi").$$render($$result, {}, {}, {
+                default: () => {
+                  return `Skills`;
+                }
+              })}
+          ${validate_component(NavLi, "NavLi").$$render($$result, {}, {}, {
+                default: () => {
+                  return `Contact`;
+                }
+              })}`;
+            }
+          })}`;
+        }
       }
-    }
-  )}
+    )}
 
-    <div class="${"flex flex-wrap justify-center min-w-full items-top p-4 m-4"}"><h1 class="${"text-5xl min-w-full text-center"}">Ariel Fernandez</h1>
+    <div class="${"flex flex-wrap justify-center min-w-full items-top m-4"}"><h1 class="${"text-5xl min-w-full text-center"}">Ariel Fernandez</h1>
         <h3 class="${"text-3xl min-w-full text-center -my-5"}">Software Engineer - NYC area</h3>
-        <h4 class="${"text-lg min-w-full text-center -my-1"}">I love to create and build things using code</h4>
-        <div class="${"min-w-full flex flex-wrap justify-center gap-1"}" style="${"height:1rem"}">${validate_component(Button, "Button").$$render($$result, {}, {}, {
-    default: () => {
-      return `LinkedIn`;
-    }
-  })}
+        <h4 class="${"text-lg min-w-full text-center -my-1"}">I have a deep interest in coding and the ability to use it to build and create</h4>
+        <div class="${"min-w-full flex flex-wrap justify-center gap-1"}" style="${"height:1rem"}">${validate_component(Button, "Button").$$render(
+      $$result,
+      {
+        href: "https://www.linkedin.com/in/arielfernandez412/"
+      },
+      {},
+      {
+        default: () => {
+          return `LinkedIn`;
+        }
+      }
+    )}
         ${validate_component(Button, "Button").$$render($$result, {}, {}, {
-    default: () => {
-      return `GitHub`;
-    }
-  })}</div></div></div>`;
+      default: () => {
+        return `Resume`;
+      }
+    })}
+        ${validate_component(Modal, "Modal").$$render(
+      $$result,
+      {
+        title: "Ariels Resume",
+        autoclose: true,
+        open: defaultModal
+      },
+      {
+        open: ($$value) => {
+          defaultModal = $$value;
+          $$settled = false;
+        }
+      },
+      {
+        default: () => {
+          return `<img src="${"https://i.imgur.com/Iw1YXTf.jpg"}" alt="${""}">`;
+        }
+      }
+    )}
+          ${validate_component(Button, "Button").$$render($$result, { href: "https://github.com/RielDreams" }, {}, {
+      default: () => {
+        return `GitHub`;
+      }
+    })}</div></div></div>`;
+  } while (!$$settled);
+  return $$rendered;
 });
 const Footer_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `${validate_component(Footer, "Footer").$$render(
     $$result,
     {
       footerType: "logo",
-      class: "bottom-0 left-0 z-20 w-full"
+      class: "bottom-0 left-0 z-20 w-full "
     },
     {},
     {
@@ -1252,23 +1457,26 @@ const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       id: 2,
       name: "GSXR",
       imgurl: "https://i.imgur.com/boyhlkQm.jpg"
-    },
-    {
-      id: 3,
-      name: "Olivers first farm day",
-      imgurl: "https://i.imgur.com/CGNcoZnm.jpg"
     }
   ];
   if ($$props.images === void 0 && $$bindings.images && images !== void 0)
     $$bindings.images(images);
-  return `<div class="${"text-center min-w-full dark:text-gray-200 p-4 grid grid-cols-2"}"><div><p>My name is Ariel Fernandez, and I&#39;m a bilingual software engineer with a strong background in law enforcement. I&#39;m passionate about problem-solving and delivering high-quality solutions.
-        </p>
-        <p>In addition to my professional work, I have a variety of hobbies that keep me engaged and creative. I&#39;m an avid photographer, and I love capturing cars and landscapes through my camera lens. I&#39;m also a dedicated reef keeper and aquarium enthusiast. When I&#39;m not exploring the great outdoors, you can often find me learning about 3D modeling in blender, working on my reef tank or working on my project cars.
-        </p>
-        <p>My hobbies reflect my love of creating and building, and I bring that same passion to my work as a software engineer. Whether I&#39;m developing new applications, solving complex problems, or building innovative solutions, I&#39;m committed to excellence and always striving to deliver the best possible results.
-            Thanks for taking the time to learn a little more about me, and I hope we have the opportunity to work together soon!
-        </p></div>  
-    <div class="${"min-w-5xl flex justify-center items-center"}">${validate_component(Carousel, "Carousel").$$render(
+  return `<div class="${"text-center min-w-[40%] dark:text-gray-200 p-4 grid grid-cols-2"}" id="${"about"}"><div class="${"flex flex-wrap justify-center items-center p-10 text-lg max-w-xl "}"><p class="${"mb-2"}">My name is Ariel Fernandez, and I&#39;m a bilingual software engineer with a strong background in
+			law enforcement. I&#39;m passionate about problem-solving and delivering high-quality solutions.
+		</p>
+		<p class="${"mb-2"}">In addition to my professional work, I have a variety of hobbies that keep me engaged and
+			creative. I&#39;m an avid photographer, and I love capturing cars and landscapes through my camera
+			lens. I&#39;m also a dedicated reef keeper and aquarium enthusiast. When I&#39;m not exploring the
+			great outdoors, you can often find me learning about 3D modeling in blender, working on my
+			reef tank or working on my project cars.
+		</p>
+		<p>My hobbies reflect my love of creating and building, and I bring that same passion to my work
+			as a software engineer. Whether I&#39;m developing new applications, solving complex problems, or
+			building innovative solutions, I&#39;m committed to excellence and always striving to deliver the
+			best possible results. Thanks for taking the time to learn a little more about me, and I hope
+			we have the opportunity to work together soon!
+		</p></div>
+	<div class="${"flex justify-center items-center "}">${validate_component(Carousel, "Carousel").$$render(
     $$result,
     {
       images,
@@ -1283,9 +1491,65 @@ const About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {}
   )}</div></div>`;
 });
+const css$1 = {
+  code: "ul.svelte-da9j5z{list-style:none;padding-left:0}",
+  map: null
+};
+const Accordion = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { duration = 0.2 } = $$props;
+  let { easing = "ease" } = $$props;
+  let { key = null } = $$props;
+  const dispatch = createEventDispatcher();
+  const store = writable({ key, duration, easing });
+  const unsubscribe = store.subscribe((s) => {
+    key = s.key;
+    dispatch("change", { key });
+  });
+  setContext("svelte-collapsible-accordion", store);
+  onDestroy(unsubscribe);
+  if ($$props.duration === void 0 && $$bindings.duration && duration !== void 0)
+    $$bindings.duration(duration);
+  if ($$props.easing === void 0 && $$bindings.easing && easing !== void 0)
+    $$bindings.easing(easing);
+  if ($$props.key === void 0 && $$bindings.key && key !== void 0)
+    $$bindings.key(key);
+  $$result.css.add(css$1);
+  {
+    store.update((s) => Object.assign(s, { key }));
+  }
+  return `<ul class="${"accordion svelte-da9j5z"}">${slots.default ? slots.default({}) : ``}
+</ul>`;
+});
+const css = {
+  code: ".accordion-item-header.svelte-13br4ya{user-select:none;cursor:pointer}",
+  map: null
+};
+const AccordionItem = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let params;
+  let $store, $$unsubscribe_store;
+  let { key } = $$props;
+  const store = getContext("svelte-collapsible-accordion");
+  $$unsubscribe_store = subscribe(store, (value) => $store = value);
+  if ($$props.key === void 0 && $$bindings.key && key !== void 0)
+    $$bindings.key(key);
+  $$result.css.add(css);
+  params = {
+    open: $store.key === key,
+    duration: $store.duration,
+    easing: $store.easing
+  };
+  $$unsubscribe_store();
+  return `<li class="${"accordion-item"}"${add_attribute("aria-expanded", params.open, 0)}><div class="${"accordion-item-header svelte-13br4ya"}">${slots.header ? slots.header({}) : ``}</div>
+
+    <div class="${"accordion-item-body"}">${slots.body ? slots.body({}) : ``}</div>
+
+    ${slots.default ? slots.default({}) : ``}
+
+</li>`;
+});
 const Skills = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="${"flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 p-4 min-w-full"}"><h1 class="${"text-4xl"}">Languages &amp; Technologies I&#39;m comfortable with </h1>
-<div class="${"flex flex-wrap min-w-full justify-center gap-6"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" aria-label="${"JavaScript"}" role="${"img"}" viewBox="${"0 0 512 512"}" width="${"64px"}" height="${"64px"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><rect width="${"512"}" height="${"512"}" rx="${"15%"}" fill="${"#f7df1e"}"></rect><path d="${"M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"}"></path></g></svg>
+  return `<div class="${"flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 p-4 min-w-full"}" id="${"skills"}"><h1 class="${"text-4xl mb-16 mt-8"}">Experienced working with the following languages and technologies: </h1>
+<div class="${"flex flex-wrap min-w-full justify-center gap-6 mt-15 text-center"}"><div><svg xmlns="${"http://www.w3.org/2000/svg"}" aria-label="${"JavaScript"}" role="${"img"}" viewBox="${"0 0 512 512"}" width="${"64px"}" height="${"64px"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><rect width="${"512"}" height="${"512"}" rx="${"15%"}" fill="${"#f7df1e"}"></rect><path d="${"M324 370c10 17 24 29 47 29c20 0 33-10 33 -24c0-16 -13 -22 -35 -32l-12-5c-35-15 -58 -33 -58 -72c0-36 27 -64 70 -64c31 0 53 11 68 39l-37 24c-8-15 -17 -21 -31 -21c-14 0-23 9 -23 21c0 14 9 20 30 29l12 5c41 18 64 35 64 76c0 43-34 67 -80 67c-45 0-74 -21 -88 -49zm-170 4c8 13 14 25 31 25c16 0 26-6 26 -30V203h48v164c0 50-29 72 -72 72c-39 0-61 -20 -72 -44z"}"></path></g></svg>
         <p>JavaScript</p></div>
 
     <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" xmlns="${"http://www.w3.org/2000/svg"}" xmlns:xlink="${"http://www.w3.org/1999/xlink"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><defs><linearGradient id="${"a"}" x1="${"-645.732"}" y1="${"839.188"}" x2="${"-654.59"}" y2="${"839.25"}" gradientTransform="${"matrix(-0.977, -0.323, -0.29, 0.877, -375.944, -928.287)"}" gradientUnits="${"userSpaceOnUse"}"><stop offset="${"0.231"}" stop-color="${"#999875"}"></stop><stop offset="${"0.563"}" stop-color="${"#9b9977"}"></stop><stop offset="${"0.683"}" stop-color="${"#a09f7e"}"></stop><stop offset="${"0.768"}" stop-color="${"#a9a889"}"></stop><stop offset="${"0.837"}" stop-color="${"#b7b69a"}"></stop><stop offset="${"0.896"}" stop-color="${"#c9c7b0"}"></stop><stop offset="${"0.948"}" stop-color="${"#deddcb"}"></stop><stop offset="${"0.994"}" stop-color="${"#f8f6eb"}"></stop><stop offset="${"1"}" stop-color="${"#fbf9ef"}"></stop></linearGradient><linearGradient id="${"b"}" x1="${"-644.287"}" y1="${"823.405"}" x2="${"-657.028"}" y2="${"845.476"}" gradientTransform="${"matrix(-0.977, -0.323, -0.29, 0.877, -375.944, -928.287)"}" gradientUnits="${"userSpaceOnUse"}"><stop offset="${"0"}" stop-color="${"#48a547"}"></stop><stop offset="${"1"}" stop-color="${"#3f9143"}"></stop></linearGradient><linearGradient id="${"c"}" x1="${"-643.386"}" y1="${"839.485"}" x2="${"-652.418"}" y2="${"833.417"}" gradientTransform="${"matrix(-0.977, -0.323, -0.29, 0.877, -375.944, -928.287)"}" gradientUnits="${"userSpaceOnUse"}"><stop offset="${"0"}" stop-color="${"#41a247"}"></stop><stop offset="${"0.352"}" stop-color="${"#4ba74b"}"></stop><stop offset="${"0.956"}" stop-color="${"#67b554"}"></stop><stop offset="${"1"}" stop-color="${"#69b655"}"></stop></linearGradient></defs><title>file_type_mongo</title><path d="${"M16.62,30l-.751-.249s.1-3.8-1.275-4.067c-.9-1.048.133-44.741,3.423-.149a2.712,2.712,0,0,0-1.333,1.523A14.1,14.1,0,0,0,16.62,30Z"}" style="${"fill:url(#a)"}"></path><path d="${"M17.026,26.329a13.223,13.223,0,0,0,5-13.225C20.556,6.619,17.075,4.487,16.7,3.673a9.792,9.792,0,0,1-.825-1.6l.277,18.069S15.578,25.664,17.026,26.329Z"}" style="${"fill:url(#b)"}"></path><path d="${"M15.487,26.569S9.366,22.4,9.72,15.025A15.54,15.54,0,0,1,15.239,3.377,1.725,1.725,0,0,0,15.846,2c.381.82.319,12.243.359,13.579C16.36,20.776,15.916,25.588,15.487,26.569Z"}" style="${"fill:url(#c)"}"></path></g></svg>
@@ -1316,26 +1580,55 @@ const Skills = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 
     <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M6 28L4 3H28L26 28L16 31L6 28Z"}" fill="${"#E44D26"}"></path><path d="${"M26 5H16V29.5L24 27L26 5Z"}" fill="${"#F16529"}"></path><path d="${"M9.5 17.5L8.5 8H24L23.5 11H11.5L12 14.5H23L22 24L16 26L10 24L9.5 19H12.5L13 21.5L16 22.5L19 21.5L19.5 17.5H9.5Z"}" fill="${"white"}"></path></g></svg>
         <p>HTML</p></div></div>
-<h1>honorable mentions</h1></div>`;
+${validate_component(Accordion, "Accordion").$$render($$result, {}, {}, {
+    default: () => {
+      return `${validate_component(AccordionItem, "AccordionItem").$$render($$result, {}, {}, {
+        body: () => {
+          return `<div slot="${"body"}" class="${"flex flex-wrap min-w-full text-center justify-center items-center gap-6 mt-15"}"><div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" xmlns="${"http://www.w3.org/2000/svg"}" xmlns:xlink="${"http://www.w3.org/1999/xlink"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><defs><linearGradient id="${"a"}" x1="${"4.494"}" y1="${"-2092.086"}" x2="${"13.832"}" y2="${"-2075.914"}" gradientTransform="${"translate(0 2100)"}" gradientUnits="${"userSpaceOnUse"}"><stop offset="${"0"}" stop-color="${"#18884f"}"></stop><stop offset="${"0.5"}" stop-color="${"#117e43"}"></stop><stop offset="${"1"}" stop-color="${"#0b6631"}"></stop></linearGradient></defs><title>file_type_excel</title><path d="${"M19.581,15.35,8.512,13.4V27.809A1.192,1.192,0,0,0,9.705,29h19.1A1.192,1.192,0,0,0,30,27.809h0V22.5Z"}" style="${"fill:#185c37"}"></path><path d="${"M19.581,3H9.705A1.192,1.192,0,0,0,8.512,4.191h0V9.5L19.581,16l5.861,1.95L30,16V9.5Z"}" style="${"fill:#21a366"}"></path><path d="${"M8.512,9.5H19.581V16H8.512Z"}" style="${"fill:#107c41"}"></path><path d="${"M16.434,8.2H8.512V24.45h7.922a1.2,1.2,0,0,0,1.194-1.191V9.391A1.2,1.2,0,0,0,16.434,8.2Z"}" style="${"opacity:0.10000000149011612;isolation:isolate"}"></path><path d="${"M15.783,8.85H8.512V25.1h7.271a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.783,8.85Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M15.783,8.85H8.512V23.8h7.271a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.783,8.85Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M15.132,8.85H8.512V23.8h6.62a1.2,1.2,0,0,0,1.194-1.191V10.041A1.2,1.2,0,0,0,15.132,8.85Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M3.194,8.85H15.132a1.193,1.193,0,0,1,1.194,1.191V21.959a1.193,1.193,0,0,1-1.194,1.191H3.194A1.192,1.192,0,0,1,2,21.959V10.041A1.192,1.192,0,0,1,3.194,8.85Z"}" style="${"fill:url(#a)"}"></path><path d="${"M5.7,19.873l2.511-3.884-2.3-3.862H7.758L9.013,14.6c.116.234.2.408.238.524h.017c.082-.188.169-.369.26-.546l1.342-2.447h1.7l-2.359,3.84,2.419,3.905H10.821l-1.45-2.711A2.355,2.355,0,0,1,9.2,16.8H9.176a1.688,1.688,0,0,1-.168.351L7.515,19.873Z"}" style="${"fill:#fff"}"></path><path d="${"M28.806,3H19.581V9.5H30V4.191A1.192,1.192,0,0,0,28.806,3Z"}" style="${"fill:#33c481"}"></path><path d="${"M19.581,16H30v6.5H19.581Z"}" style="${"fill:#107c41"}"></path></g></svg>
+                <p>Excel</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><rect x="${"10"}" y="${"2"}" width="${"20"}" height="${"28"}" rx="${"2"}" fill="${"#1066B5"}"></rect><rect x="${"10"}" y="${"2"}" width="${"20"}" height="${"28"}" rx="${"2"}" fill="${"url(#paint0_linear_87_7742)"}"></rect><rect x="${"10"}" y="${"5"}" width="${"10"}" height="${"10"}" fill="${"#32A9E7"}"></rect><rect x="${"10"}" y="${"15"}" width="${"10"}" height="${"10"}" fill="${"#167EB4"}"></rect><rect x="${"20"}" y="${"15"}" width="${"10"}" height="${"10"}" fill="${"#32A9E7"}"></rect><rect x="${"20"}" y="${"5"}" width="${"10"}" height="${"10"}" fill="${"#58D9FD"}"></rect><mask id="${"mask0_87_7742"}" style="${"mask-type:alpha"}" maskUnits="${"userSpaceOnUse"}" x="${"8"}" y="${"14"}" width="${"24"}" height="${"16"}"><path d="${"M8 14H30C31.1046 14 32 14.8954 32 16V28C32 29.1046 31.1046 30 30 30H10C8.89543 30 8 29.1046 8 28V14Z"}" fill="${"url(#paint1_linear_87_7742)"}"></path></mask><g mask="${"url(#mask0_87_7742)"}"><path d="${"M32 14V18H30V14H32Z"}" fill="${"#135298"}"></path><path d="${"M32 30V16L7 30H32Z"}" fill="${"url(#paint2_linear_87_7742)"}"></path><path d="${"M8 30V16L33 30H8Z"}" fill="${"url(#paint3_linear_87_7742)"}"></path></g><path d="${"M8 12C8 10.3431 9.34315 9 11 9H17C18.6569 9 20 10.3431 20 12V24C20 25.6569 18.6569 27 17 27H8V12Z"}" fill="${"#000000"}" fill-opacity="${"0.3"}"></path><rect y="${"7"}" width="${"18"}" height="${"18"}" rx="${"2"}" fill="${"url(#paint4_linear_87_7742)"}"></rect><path d="${"M14 16.0693V15.903C14 13.0222 11.9272 11 9.01582 11C6.08861 11 4 13.036 4 15.9307V16.097C4 18.9778 6.07278 21 9 21C11.9114 21 14 18.964 14 16.0693ZM11.6424 16.097C11.6424 18.0083 10.5665 19.1579 9.01582 19.1579C7.46519 19.1579 6.37342 17.9806 6.37342 16.0693V15.903C6.37342 13.9917 7.44937 12.8421 9 12.8421C10.5348 12.8421 11.6424 14.0194 11.6424 15.9307V16.097Z"}" fill="${"white"}"></path><defs><linearGradient id="${"paint0_linear_87_7742"}" x1="${"10"}" y1="${"16"}" x2="${"30"}" y2="${"16"}" gradientUnits="${"userSpaceOnUse"}"><stop stop-color="${"#064484"}"></stop><stop offset="${"1"}" stop-color="${"#0F65B5"}"></stop></linearGradient><linearGradient id="${"paint1_linear_87_7742"}" x1="${"8"}" y1="${"26.7692"}" x2="${"32"}" y2="${"26.7692"}" gradientUnits="${"userSpaceOnUse"}"><stop stop-color="${"#1B366F"}"></stop><stop offset="${"1"}" stop-color="${"#2657B0"}"></stop></linearGradient><linearGradient id="${"paint2_linear_87_7742"}" x1="${"32"}" y1="${"23"}" x2="${"8"}" y2="${"23"}" gradientUnits="${"userSpaceOnUse"}"><stop stop-color="${"#44DCFD"}"></stop><stop offset="${"0.453125"}" stop-color="${"#259ED0"}"></stop></linearGradient><linearGradient id="${"paint3_linear_87_7742"}" x1="${"8"}" y1="${"23"}" x2="${"32"}" y2="${"23"}" gradientUnits="${"userSpaceOnUse"}"><stop stop-color="${"#259ED0"}"></stop><stop offset="${"1"}" stop-color="${"#44DCFD"}"></stop></linearGradient><linearGradient id="${"paint4_linear_87_7742"}" x1="${"0"}" y1="${"16"}" x2="${"18"}" y2="${"16"}" gradientUnits="${"userSpaceOnUse"}"><stop stop-color="${"#064484"}"></stop><stop offset="${"1"}" stop-color="${"#0F65B5"}"></stop></linearGradient></defs></g></svg>
+                <p>Outlook</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" xmlns="${"http://www.w3.org/2000/svg"}" xmlns:xlink="${"http://www.w3.org/1999/xlink"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><defs><linearGradient id="${"a"}" x1="${"4.494"}" y1="${"-1748.086"}" x2="${"13.832"}" y2="${"-1731.914"}" gradientTransform="${"translate(0 1756)"}" gradientUnits="${"userSpaceOnUse"}"><stop offset="${"0"}" stop-color="${"#ca4c28"}"></stop><stop offset="${"0.5"}" stop-color="${"#c5401e"}"></stop><stop offset="${"1"}" stop-color="${"#b62f14"}"></stop></linearGradient></defs><title>file_type_powerpoint</title><path d="${"M18.93,17.3,16.977,3h-.146A12.9,12.9,0,0,0,3.953,15.854V16Z"}" style="${"fill:#ed6c47"}"></path><path d="${"M17.123,3h-.146V16l6.511,2.6L30,16v-.146A12.9,12.9,0,0,0,17.123,3Z"}" style="${"fill:#ff8f6b"}"></path><path d="${"M30,16v.143A12.905,12.905,0,0,1,17.12,29h-.287A12.907,12.907,0,0,1,3.953,16.143V16Z"}" style="${"fill:#d35230"}"></path><path d="${"M17.628,9.389V23.26a1.2,1.2,0,0,1-.742,1.1,1.16,1.16,0,0,1-.45.091H7.027c-.182-.208-.358-.429-.521-.65a12.735,12.735,0,0,1-2.553-7.657v-.286A12.705,12.705,0,0,1,6.05,8.85c.143-.221.293-.442.456-.65h9.93A1.2,1.2,0,0,1,17.628,9.389Z"}" style="${"opacity:0.10000000149011612;isolation:isolate"}"></path><path d="${"M16.977,10.04V23.911a1.15,1.15,0,0,1-.091.448,1.2,1.2,0,0,1-1.1.741H7.62q-.309-.314-.593-.65c-.182-.208-.358-.429-.521-.65a12.735,12.735,0,0,1-2.553-7.657v-.286A12.705,12.705,0,0,1,6.05,8.85h9.735A1.2,1.2,0,0,1,16.977,10.04Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M16.977,10.04V22.611A1.2,1.2,0,0,1,15.785,23.8H6.506a12.735,12.735,0,0,1-2.553-7.657v-.286A12.705,12.705,0,0,1,6.05,8.85h9.735A1.2,1.2,0,0,1,16.977,10.04Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M16.326,10.04V22.611A1.2,1.2,0,0,1,15.134,23.8H6.506a12.735,12.735,0,0,1-2.553-7.657v-.286A12.705,12.705,0,0,1,6.05,8.85h9.084A1.2,1.2,0,0,1,16.326,10.04Z"}" style="${"opacity:0.20000000298023224;isolation:isolate"}"></path><path d="${"M3.194,8.85H15.132a1.193,1.193,0,0,1,1.194,1.191V21.959a1.193,1.193,0,0,1-1.194,1.191H3.194A1.192,1.192,0,0,1,2,21.959V10.041A1.192,1.192,0,0,1,3.194,8.85Z"}" style="${"fill:url(#a)"}"></path><path d="${"M9.293,12.028a3.287,3.287,0,0,1,2.174.636,2.27,2.27,0,0,1,.756,1.841,2.555,2.555,0,0,1-.373,1.376,2.49,2.49,0,0,1-1.059.935A3.607,3.607,0,0,1,9.2,17.15H7.687v2.8H6.141V12.028ZM7.686,15.94H9.017a1.735,1.735,0,0,0,1.177-.351,1.3,1.3,0,0,0,.4-1.025q0-1.309-1.525-1.31H7.686V15.94Z"}" style="${"fill:#fff"}"></path></g></svg>
+                <p>PowerPoint</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 -24 256 256"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}" xmlns:xlink="${"http://www.w3.org/1999/xlink"}" preserveAspectRatio="${"xMidYMid"}" fill="${"#000000"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><g><path d="${"M100.43032,115.194555 C101.361124,98.5893536 109.492492,83.9599162 121.759794,73.5893487 C133.790003,63.4031858 149.98249,57.1773328 167.650214,57.1773328 C185.300375,57.1773328 201.492862,63.4031858 213.531852,73.5893487 C225.790373,83.9599162 233.921741,98.5893536 234.861326,115.176993 C235.792131,132.238816 228.934033,148.088836 216.903824,159.838048 C204.636522,171.789227 187.188328,179.288351 167.650214,179.288351 C148.1121,179.288351 130.62878,171.789227 118.37026,159.838048 C106.331269,148.088836 99.4907342,132.238816 100.43032,115.194555 Z"}" fill="${"#FFFFFF"}"></path><path d="${"M133.167672,116.676183 C133.645276,108.155909 137.817552,100.649417 144.112012,95.3281876 C150.284817,90.1015783 158.593324,86.9070386 167.658788,86.9070386 C176.71524,86.9070386 185.023747,90.1015783 191.201058,95.3281876 C197.491012,100.649417 201.663288,108.155909 202.145398,116.667172 C202.623002,125.421743 199.104052,133.554527 192.931246,139.58315 C186.636786,145.715405 177.683965,149.563271 167.658788,149.563271 C157.63361,149.563271 148.662766,145.715405 142.372812,139.58315 C136.195501,133.554527 132.685562,125.421743 133.167672,116.676183 Z"}" fill="${"#265787"}"></path><path d="${"M78.4107749,134.179185 C78.4694744,137.520542 79.5350962,144.01361 81.133529,149.084344 C84.4929469,159.817323 90.1913143,169.746571 98.1202631,178.497312 C106.256918,187.491883 116.276472,194.716438 127.849305,199.845871 C140.013649,205.23268 153.193946,207.978011 166.884477,207.955572 C180.552431,207.937373 193.732728,205.137858 205.897072,199.710411 C217.469906,194.531308 227.480429,187.275146 235.603538,178.27606 C243.527971,169.489196 249.217308,159.541887 252.585757,148.808908 C254.279012,143.385977 255.349149,137.881769 255.778107,132.3595 C256.198034,126.918508 256.021935,121.468484 255.249811,116.022976 C253.741685,105.411912 250.070708,95.4555722 244.417494,86.3797254 C239.247423,78.0398801 232.582771,70.7385646 224.658338,64.5931778 L224.676399,64.5796318 L144.705094,3.1754327 C144.632849,3.12124854 144.574149,3.06254903 144.497388,3.01288022 C139.250556,-1.01480899 130.427568,-1.00126295 124.656955,3.03545695 C118.823127,7.11733032 118.154856,13.8677736 123.347505,18.1257455 L123.324928,18.1483222 L156.679794,45.2720095 L55.0167639,45.3803778 L54.8813035,45.3803778 C46.4782434,45.3894085 38.4002883,50.9026468 36.8018556,57.8698267 C35.1582694,64.9679516 40.8656676,70.8559636 49.6028633,70.887571 L49.5893173,70.9191785 L101.118453,70.8198408 L9.16793408,141.399224 C9.05053507,141.485016 8.92410536,141.575323 8.81573704,141.661114 C0.14175613,148.303189 -2.66227414,159.347727 2.80129531,166.337484 C8.34614099,173.444639 20.1357111,173.458186 28.8999989,166.378122 L79.0835616,125.306529 C79.0835616,125.306529 78.3520754,130.851375 78.4107749,134.179185 Z M207.36456,152.74629 C197.024416,163.280594 182.548215,169.254398 166.884477,169.286098 C151.198163,169.313097 136.721962,163.393478 126.381818,152.877235 C121.329145,147.752317 117.61753,141.855274 115.328249,135.574427 C113.084122,129.401948 112.21266,122.85018 112.790624,116.239713 C113.336981,109.778252 115.260519,103.614804 118.330955,98.0383504 C121.347206,92.5567196 125.501325,87.6033843 130.630759,83.4131426 C140.681921,75.2223038 153.478413,70.7882334 166.8619,70.7701166 C180.258934,70.7521106 193.046396,75.1455429 203.106588,83.3092897 C208.226991,87.48147 212.376595,92.4167439 215.392846,97.889344 C218.476828,103.461282 220.38682,109.602153 220.955753,116.081676 C221.524687,122.683112 220.653225,129.22585 218.409098,135.402844 C216.115302,141.701753 212.417233,147.598795 207.36456,152.74629 Z"}" fill="${"#EA7600"}"></path></g></g></svg>
+                <p>Blender</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M2 12.1333C2 8.58633 2 6.81283 2.69029 5.45806C3.29749 4.26637 4.26637 3.29749 5.45806 2.69029C6.81283 2 8.58633 2 12.1333 2H19.8667C23.4137 2 25.1872 2 26.5419 2.69029C27.7336 3.29749 28.7025 4.26637 29.3097 5.45806C30 6.81283 30 8.58633 30 12.1333V19.8667C30 23.4137 30 25.1872 29.3097 26.5419C28.7025 27.7336 27.7336 28.7025 26.5419 29.3097C25.1872 30 23.4137 30 19.8667 30H12.1333C8.58633 30 6.81283 30 5.45806 29.3097C4.26637 28.7025 3.29749 27.7336 2.69029 26.5419C2 25.1872 2 23.4137 2 19.8667V12.1333Z"}" fill="${"#001E36"}"></path><path d="${"M8 22.5162V10.2034C8 10.1197 8.035 10.0718 8.11667 10.0718C9.3223 10.0718 10.5274 10 11.7333 10C13.6902 10 15.809 10.6691 16.5517 12.7162C16.7267 13.2188 16.82 13.7333 16.82 14.2718C16.82 15.3009 16.5867 16.1504 16.12 16.8205C14.8164 18.6923 12.557 18.6632 10.5317 18.6632V22.5043C10.5475 22.618 10.4506 22.6718 10.3567 22.6718H8.14C8.04667 22.6718 8 22.6239 8 22.5162ZM10.5433 12.3812V16.4017C11.3464 16.4605 12.1867 16.4669 12.9583 16.2103C13.8102 15.9645 14.2767 15.2272 14.2767 14.3436C14.3003 13.5907 13.8901 12.8683 13.1917 12.5966C12.4294 12.2796 11.3662 12.2606 10.5433 12.3812Z"}" fill="${"#31A8FF"}"></path><path d="${"M24.0967 15.6074C23.7437 15.4213 23.3677 15.2852 22.979 15.2028C22.4796 15.0853 20.5098 14.6737 20.509 15.7037C20.5265 16.2787 21.4393 16.5604 21.8426 16.7247C23.2585 17.2108 24.8607 18.0797 24.8292 19.8264C24.8725 22.0008 22.7657 22.8701 20.9598 22.8703C20.0197 22.88 19.0403 22.7344 18.1799 22.3308C18.0977 22.2873 18.0449 22.1944 18.0484 22.0996V20.019C18.0391 19.9356 18.1287 19.8627 18.1987 19.9227C19.0417 20.4325 20.0409 20.6801 21.0162 20.6933C21.4467 20.6933 22.2999 20.6516 22.2935 20.019C22.2935 19.412 21.2728 19.1329 20.8659 18.9787C20.2761 18.7682 19.7169 18.4765 19.2036 18.1118C18.4862 17.6001 18.0362 16.7797 18.0484 15.8771C18.0442 13.8297 19.9835 12.9107 21.73 12.9103C22.5464 12.9035 23.4232 12.964 24.1832 13.2956C24.2925 13.3277 24.3151 13.4429 24.3147 13.546V15.4918C24.3216 15.6126 24.1875 15.6537 24.0967 15.6074Z"}" fill="${"#31A8FF"}"></path></g></svg>
+                <p>Photoshop</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 32 32"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M2 12.1333C2 8.58633 2 6.81283 2.69029 5.45806C3.29749 4.26637 4.26637 3.29749 5.45806 2.69029C6.81283 2 8.58633 2 12.1333 2H19.8667C23.4137 2 25.1872 2 26.5419 2.69029C27.7336 3.29749 28.7025 4.26637 29.3097 5.45806C30 6.81283 30 8.58633 30 12.1333V19.8667C30 23.4137 30 25.1872 29.3097 26.5419C28.7025 27.7336 27.7336 28.7025 26.5419 29.3097C25.1872 30 23.4137 30 19.8667 30H12.1333C8.58633 30 6.81283 30 5.45806 29.3097C4.26637 28.7025 3.29749 27.7336 2.69029 26.5419C2 25.1872 2 23.4137 2 19.8667V12.1333Z"}" fill="${"#001E36"}"></path><path d="${"M16.7052 22.6201H9.30453C9.17926 22.6201 9.11665 22.5494 9.11671 22.4082V10.1749C9.10285 10.0754 9.18875 9.98729 9.28578 10.0015H11.5774C11.6528 9.99061 11.7193 10.0602 11.7088 10.1364V20.1927H17.0997C17.2123 20.1927 17.2562 20.2505 17.2311 20.3661L16.893 22.4467C16.8901 22.5515 16.8041 22.619 16.7052 22.6201Z"}" fill="${"#31A8FF"}"></path><path d="${"M18.5853 13.0319H20.6327C20.7456 13.0329 20.847 13.1129 20.8769 13.2246C21.0269 13.5663 21.0454 13.9783 21.046 14.3472C21.3971 13.9279 21.8205 13.5785 22.295 13.3166C22.804 13.0212 23.381 12.8715 23.9657 12.8831C24.0627 12.8689 24.1486 12.957 24.1347 13.0565V15.3876C24.1347 15.4776 24.0719 15.5224 23.9469 15.5224C23.0803 15.4611 21.7311 15.6711 21.1014 16.3701V22.4312C21.1014 22.5468 21.0513 22.6046 20.9511 22.6046H18.7544C18.6465 22.6204 18.5513 22.5208 18.5665 22.4119V15.8307C18.5665 14.9488 18.5852 14.0404 18.4538 13.1668C18.4336 13.0864 18.5087 13.0117 18.5853 13.0319Z"}" fill="${"#31A8FF"}"></path></g></svg>
+                <p>Lightroom</p></div>
+            <div><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 16 16"}" xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path fill="${"#252F3E"}" d="${"M4.51 7.687c0 .197.02.357.058.475.042.117.096.245.17.384a.233.233 0 01.037.123c0 .053-.032.107-.1.16l-.336.224a.255.255 0 01-.138.048c-.054 0-.107-.026-.16-.074a1.652 1.652 0 01-.192-.251 4.137 4.137 0 01-.165-.315c-.415.491-.936.737-1.564.737-.447 0-.804-.129-1.064-.385-.261-.256-.394-.598-.394-1.025 0-.454.16-.822.484-1.1.325-.278.756-.416 1.304-.416.18 0 .367.016.564.042.197.027.4.07.612.118v-.39c0-.406-.085-.689-.25-.854-.17-.166-.458-.246-.868-.246-.186 0-.377.022-.574.07a4.23 4.23 0 00-.575.181 1.525 1.525 0 01-.186.07.326.326 0 01-.085.016c-.075 0-.112-.054-.112-.166v-.262c0-.085.01-.15.037-.186a.399.399 0 01.15-.113c.185-.096.409-.176.67-.24.26-.07.537-.101.83-.101.633 0 1.096.144 1.394.432.293.288.442.726.442 1.314v1.73h.01zm-2.161.811c.175 0 .356-.032.548-.096.191-.064.362-.182.505-.342a.848.848 0 00.181-.341c.032-.129.054-.283.054-.465V7.03a4.43 4.43 0 00-.49-.09 3.996 3.996 0 00-.5-.033c-.357 0-.618.07-.793.214-.176.144-.26.347-.26.614 0 .25.063.437.196.566.128.133.314.197.559.197zm4.273.577c-.096 0-.16-.016-.202-.054-.043-.032-.08-.106-.112-.208l-1.25-4.127a.938.938 0 01-.049-.214c0-.085.043-.133.128-.133h.522c.1 0 .17.016.207.053.043.032.075.107.107.208l.894 3.535.83-3.535c.026-.106.058-.176.1-.208a.365.365 0 01.214-.053h.425c.102 0 .17.016.213.053.043.032.08.107.101.208l.841 3.578.92-3.578a.458.458 0 01.107-.208.346.346 0 01.208-.053h.495c.085 0 .133.043.133.133 0 .027-.006.054-.01.086a.76.76 0 01-.038.133l-1.283 4.127c-.032.107-.069.177-.111.209a.34.34 0 01-.203.053h-.457c-.101 0-.17-.016-.213-.053-.043-.038-.08-.107-.101-.214L8.213 5.37l-.82 3.439c-.026.107-.058.176-.1.213-.043.038-.118.054-.213.054h-.458zm6.838.144a3.51 3.51 0 01-.82-.096c-.266-.064-.473-.134-.612-.214-.085-.048-.143-.101-.165-.15a.378.378 0 01-.031-.149v-.272c0-.112.042-.166.122-.166a.3.3 0 01.096.016c.032.011.08.032.133.054.18.08.378.144.585.187.213.042.42.064.633.064.336 0 .596-.059.777-.176a.575.575 0 00.277-.508.52.52 0 00-.144-.373c-.095-.102-.276-.193-.537-.278l-.772-.24c-.388-.123-.676-.305-.851-.545a1.275 1.275 0 01-.266-.774c0-.224.048-.422.143-.593.096-.17.224-.32.384-.438.16-.122.34-.213.553-.277.213-.064.436-.091.67-.091.118 0 .24.005.357.021.122.016.234.038.346.06.106.026.208.052.303.085.096.032.17.064.224.096a.46.46 0 01.16.133.289.289 0 01.047.176v.251c0 .112-.042.171-.122.171a.552.552 0 01-.202-.064 2.427 2.427 0 00-1.022-.208c-.303 0-.543.048-.708.15-.165.1-.25.256-.25.475 0 .149.053.277.16.379.106.101.303.202.585.293l.756.24c.383.123.66.294.825.513.165.219.244.47.244.748 0 .23-.047.437-.138.619a1.436 1.436 0 01-.388.47c-.165.133-.362.23-.591.299-.24.075-.49.112-.761.112z"}"></path><g fill="${"#F90"}" fill-rule="${"evenodd"}" clip-rule="${"evenodd"}"><path d="${"M14.465 11.813c-1.75 1.297-4.294 1.986-6.481 1.986-3.065 0-5.827-1.137-7.913-3.027-.165-.15-.016-.353.18-.235 2.257 1.313 5.04 2.109 7.92 2.109 1.941 0 4.075-.406 6.039-1.239.293-.133.543.192.255.406z"}"></path><path d="${"M15.194 10.98c-.223-.287-1.479-.138-2.048-.069-.17.022-.197-.128-.043-.24 1-.705 2.645-.502 2.836-.267.192.24-.053 1.89-.99 2.68-.143.123-.281.06-.218-.1.213-.53.687-1.72.463-2.003z"}"></path></g></g></svg>
+                <p>AWS</p></div></div>`;
+        },
+        header: () => {
+          return `<div slot="${"header"}" class="${"mt-10 text-3xl flex justify-center items-center"}"><h2>Honorable mentions</h2>
+            <svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke-width="${"1.5"}" stroke="${"currentColor"}" class="${"w-6 h-6"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5"}"></path></svg></div>`;
+        }
+      })}`;
+    }
+  })}</div>`;
 });
 const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let hidden8 = true;
   let transitionParamsBottom = { y: 320, duration: 200, easing: sineIn };
+  let name = "";
   let $$settled;
   let $$rendered;
   do {
     $$settled = true;
-    $$rendered = `<div class="${"flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 min-w-full p-4"}"><div class="${"min-w-full text-center "}"><h1 class="${"text-2xl"}">Get in touch!</h1>
-        <h2>Feel free to reach me in your preferred way below or send me a message using the form</h2>
-        <h2>We can connect on <a class="${"text-blue-500"}" href="${"https://www.linkedin.com/in/arielfernandez412/"}">LinkedIn</a>,</h2>
-        <h2>we can also connect through <a class="${"text-blue-500"}" href="${"mailto:Arielf412@me.com?subject=Your%20portfolio%20is%20AWESOME!%20Lets%20Connect!&body=Hey%20Ariel!%0D%0A%0D%0A%0D%0AMy%20name%20is%20<YourName>,%20and%20I'm%20in%20the%20business%20of%20<Industry you work in>.%0D%0AI’d%20love%20to%20talk%20about%20your%20software%20engineering%20ambitions.%20"}">Email</a></h2></div>
-        
-      <div class="${"text-center"}">${validate_component(Button, "Button").$$render($$result, {}, {}, {
+    $$rendered = `<div class="${"flex flex-wrap justify-center item-center bg-blue-100 dark:bg-gray-200 min-w-full p-4"}"><div class="${"min-w-full text-center "}" id="${"contact"}"><h1 class="${"text-2xl"}">Reach out!</h1>
+		<h2>Don&#39;t hesitate to get in touch with me via your preferred method or the provided contact form.
+		</h2>
+		<h2>We can connect on <a class="${"text-blue-500"}" href="${"https://www.linkedin.com/in/arielfernandez412/"}">LinkedIn</a>,
+		</h2>
+		<h2>we can also connect through <a class="${"text-blue-500"}" href="${"mailto:Arielf412@me.com?subject=Your%20portfolio%20is%20AWESOME!%20Lets%20Connect!&body=Hey%20Ariel!%0D%0A%0D%0A%0D%0AMy%20name%20is%20<YourName>,%20and%20I'm%20in%20the%20business%20of%20<Industry you work in>.%0D%0AI’d%20love%20to%20talk%20about%20your%20software%20engineering%20ambitions.%20"}">Email</a></h2></div>
+
+	<div class="${"text-center"}">${validate_component(Button, "Button").$$render($$result, {}, {}, {
       default: () => {
         return `Contact Form`;
       }
-    })}</div>
-      ${validate_component(Drawer, "Drawer").$$render(
+    })}
+    <p class="${"text-xs"}">(yes the form actually works)</p></div>
+	${validate_component(Drawer, "Drawer").$$render(
       $$result,
       {
         placement: "bottom",
@@ -1353,17 +1646,24 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       },
       {
         default: () => {
-          return `<form class="${"min-w-full"}"><div class="${"flex gap-2 flex-wrap justify-center"}">${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
+          return `<form class="${"min-w-full"}" action="${"https://formspree.io/f/meqwkpyk"}" method="${"POST"}"><div class="${"flex gap-2 flex-wrap justify-center"}">${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
             default: () => {
               return `${validate_component(Input, "Input").$$render(
                 $$result,
                 {
-                  type: "email",
+                  type: "text",
                   placeholder: "Full Name",
                   size: "md",
-                  class: "min-w-full"
+                  name: "name",
+                  class: "min-w-full",
+                  value: name
                 },
-                {},
+                {
+                  value: ($$value) => {
+                    name = $$value;
+                    $$settled = false;
+                  }
+                },
                 {
                   right: () => {
                     return `<svg slot="${"right"}" aria-hidden="${"true"}" xmlns="${"http://www.w3.org/2000/svg"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}" class="${"w-5 h-5"}"><path d="${"M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z"}"></path></svg>`;
@@ -1372,12 +1672,13 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
               )}`;
             }
           })}
-                ${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
+				${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
             default: () => {
               return `${validate_component(Input, "Input").$$render(
                 $$result,
                 {
-                  type: "email",
+                  type: "number",
+                  name: "number",
                   placeholder: "Phone Number",
                   size: "md"
                 },
@@ -1390,13 +1691,14 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
               )}`;
             }
           })}
-                ${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
+				${validate_component(Label, "Label").$$render($$result, { class: "space-y-2 min-w-full" }, {}, {
             default: () => {
               return `${validate_component(Input, "Input").$$render(
                 $$result,
                 {
                   type: "email",
                   placeholder: "Email",
+                  name: "email",
                   size: "md",
                   class: "min-w-full"
                 },
@@ -1409,7 +1711,17 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
               )}`;
             }
           })}
-                ${validate_component(Textarea, "Textarea").$$render(
+        ${validate_component(Input, "Input").$$render(
+            $$result,
+            {
+              name: "subject",
+              type: "hidden",
+              value: "New submission from " + name
+            },
+            {},
+            {}
+          )}
+				${validate_component(Textarea, "Textarea").$$render(
             $$result,
             {
               id: "textarea-id",
@@ -1420,8 +1732,8 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
             {},
             {}
           )}</div>
-            
-            ${validate_component(Button, "Button").$$render($$result, { type: "submit" }, {}, {
+
+			${validate_component(Button, "Button").$$render($$result, { type: "submit" }, {}, {
             default: () => {
               return `Submit`;
             }
@@ -1433,25 +1745,26 @@ const Contact = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return $$rendered;
 });
 const Projects = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `<div class="${"flex flex-wrap justify-center min-w-full text-center dark:text-gray-200 p-4"}"><div class="${"flex flex-wrap justify-center"}" style="${"width:15rem"}"><h1 class="${"min-w-full"}">AnimeWatch</h1>
+  return `<div class="${"flex flex-wrap justify-center min-w-full text-center dark:text-gray-200 p-4"}" id="${"projects"}"><div class="${"flex flex-wrap justify-center "}" style="${"width:15rem"}"><img src="${"https://i.imgur.com/KLu5a5o.gif"}" alt="${""}">
         <h2 class="${"min-w-full"}">JavaScript | CSS | HTML </h2>
-        <div class="${"min-w-full"}"><a href="${""}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
-            <a href="${""}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div>
-    <div class="${"flex flex-wrap justify-center"}" style="${"width:15rem"}"><h1 class="${"min-w-full"}">BloomBoards</h1>
+        <div class="${"flex"}"><a href="${"https://github.com/RielDreams/AnimeLookUp"}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
+            <a href="${" https://rieldreams.github.io/AnimeLookUp/"}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div>
+    <div class="${"flex flex-wrap justify-center "}" style="${"width:15rem"}"><img src="${"https://i.imgur.com/bVCqMTC.gif"}" alt="${""}">
+        
         <h2 class="${"min-w-full"}">React | Express | JavaScript </h2>
-        <div class="${"min-w-full"}"><a href="${""}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
+        <div class="${"flex"}"><a href="${"https://github.com/RielDreams/BloomBoards"}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
             <a href="${""}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div>
-    <div class="${"flex flex-wrap justify-center"}" style="${"width:15rem"}"><h1 class="${"min-w-full"}">TechFolio</h1>
+    <div class="${"flex flex-wrap justify-center "}" style="${"width:15rem"}"><img src="${"https://i.imgur.com/Ji4acad.gif"}" alt="${""}">
         <h2 class="${"min-w-full"}">JavaScript | Firebase | React</h2>
-        <div class="${"min-w-full"}"><a href="${""}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
+        <div class="${"flex"}"><a href="${"https://github.com/RielDreams/techfolio-frontend"}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
             <a href="${""}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div>
-    <div class="${"flex flex-wrap justify-center"}" style="${"width:15rem"}"><h1 class="${"min-w-full"}">RenderRealms</h1>
+    <div class="${"flex flex-wrap justify-center "}" style="${"width:15rem"}"><img src="${"https://i.imgur.com/ufV1GIQ.gif"}" alt="${""}">
         <h2 class="${"min-w-full"}">Python | Django </h2>
-        <div class="${"min-w-full"}"><a href="${""}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
+        <div class="${"flex"}"><a href="${"https://github.com/RielDreams/RenderRealms"}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
             <a href="${""}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div>
-    <div class="${"flex flex-wrap justify-center"}" style="${"width:15rem"}"><h1 class="${"min-w-full"}">Sellit</h1>
+    <div class="${"flex flex-wrap justify-center "}" style="${"width:15rem"}"><img src="${"https://i.imgur.com/3kUXllN.gif"}" alt="${""}">
         <h2 class="${"min-w-full"}">Svelte | JavaScript </h2>
-        <div class="${"min-w-full"}"><a href="${""}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
+        <div class="${"flex"}"><a href="${"https://github.com/RielDreams/Sellit"}"><svg fill="${"#000000"}" width="${"64px"}" height="${"64px"}" viewBox="${"-6 0 32 32"}" version="${"1.1"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><title>github</title><path d="${"M18.36 9.28c0.48-1.72-0.24-3.6-0.28-3.72-0.12-0.28-0.4-0.52-0.72-0.52-0.080 0-1.92-0.16-3.76 1.24-1.44-0.28-3.080-0.36-3.16-0.36-0.040 0-0.040 0-0.080 0-0.080 0-1.72 0.080-3.16 0.36-1.84-1.4-3.68-1.24-3.76-1.24-0.32 0.040-0.6 0.24-0.72 0.52-0.040 0.080-0.8 2-0.28 3.72-0.92 1.28-1.64 2.96-1 5.96 0.6 2.72 2.84 4.24 5.16 4.76-0.2 0.56-0.28 1.24-0.36 1.96-0.96 0.040-1.56-0.52-2.4-1.4-0.72-0.76-1.52-1.64-2.84-1.92-0.44-0.12-0.88 0.16-1 0.64-0.080 0.48 0.2 0.92 0.68 1 0.76 0.16 1.28 0.72 1.92 1.4 0.84 0.88 1.8 1.96 3.52 1.96 0 0 0.040 0 0.040 0 0 0.92 0.080 1.8 0.12 2.52 0.040 0.48 0.44 0.8 0.92 0.76s0.8-0.44 0.76-0.92c-0.24-2.72-0.040-5.6 0.4-6 0.32-0.2 0.52-0.56 0.4-0.96-0.080-0.36-0.4-0.64-0.8-0.64-0.36 0-4.12-0.2-4.84-3.52-0.6-2.72 0.16-3.92 0.96-4.88 0.2-0.24 0.24-0.6 0.12-0.92-0.32-0.68-0.2-1.64-0.040-2.28 0.56 0.080 1.4 0.32 2.28 1.080 0.2 0.2 0.48 0.24 0.76 0.2 1.24-0.32 2.92-0.4 3.2-0.4 0.24 0 1.96 0.080 3.2 0.4 0.28 0.080 0.56 0 0.76-0.2 0.88-0.76 1.76-1 2.28-1.080 0.16 0.6 0.28 1.56-0.040 2.28-0.12 0.28-0.080 0.64 0.12 0.92 0.8 0.96 1.52 2.16 0.96 4.88-0.72 3.32-4.48 3.52-4.92 3.56-0.4 0-0.72 0.28-0.8 0.64s0.080 0.76 0.4 0.96c0.48 0.4 0.68 3.24 0.44 6-0.040 0.48 0.32 0.88 0.76 0.92 0.040 0 0.040 0 0.080 0 0.44 0 0.8-0.32 0.84-0.76 0.16-1.76 0.28-4.48-0.28-6.2 2.32-0.48 4.56-2.040 5.16-4.76 0.64-3-0.040-4.68-1-5.96z"}"></path></g></svg></a>
             <a href="${""}"><svg width="${"64px"}" height="${"64px"}" viewBox="${"0 0 24 24"}" fill="${"none"}" xmlns="${"http://www.w3.org/2000/svg"}"><g id="${"SVGRepo_bgCarrier"}" stroke-width="${"0"}"></g><g id="${"SVGRepo_tracerCarrier"}" stroke-linecap="${"round"}" stroke-linejoin="${"round"}"></g><g id="${"SVGRepo_iconCarrier"}"><path d="${"M7.23001 18.25C6.17025 18.2535 5.15243 17.8363 4.40001 17.09C3.63614 16.2785 3.22341 15.1983 3.2515 14.0842C3.27958 12.97 3.74622 11.912 4.55001 11.14L8.31001 7.35C9.12729 6.50634 10.2456 6.0209 11.42 6C11.9475 6.00352 12.4692 6.11135 12.9549 6.3173C13.4406 6.52325 13.8807 6.82324 14.25 7.2C15.0243 8.01629 15.4433 9.10627 15.4152 10.231C15.387 11.3557 14.9141 12.4234 14.1 13.2L12.84 14.46C12.7713 14.5337 12.6885 14.5928 12.5965 14.6338C12.5045 14.6748 12.4052 14.6968 12.3045 14.6986C12.2038 14.7004 12.1038 14.6818 12.0104 14.6441C11.917 14.6064 11.8322 14.5503 11.761 14.479C11.6897 14.4078 11.6336 14.323 11.5959 14.2296C11.5582 14.1362 11.5396 14.0362 11.5414 13.9355C11.5432 13.8348 11.5652 13.7355 11.6062 13.6435C11.6472 13.5515 11.7063 13.4687 11.78 13.4L13 12.1C13.5247 11.6076 13.8338 10.9279 13.86 10.2088C13.8862 9.4897 13.6275 8.78933 13.14 8.26C12.6071 7.7953 11.9167 7.55197 11.2102 7.57986C10.5037 7.60774 9.83461 7.90474 9.34001 8.41L5.61001 12.19C5.09513 12.6812 4.79158 13.3535 4.76359 14.0646C4.73559 14.7757 4.98535 15.4698 5.46001 16C5.72088 16.2578 6.03529 16.4551 6.38093 16.5778C6.72657 16.7005 7.09497 16.7456 7.46001 16.71C7.55727 16.7004 7.65547 16.7101 7.74895 16.7386C7.84243 16.7671 7.92934 16.8139 8.00465 16.8762C8.07996 16.9385 8.14218 17.0151 8.18773 17.1015C8.23327 17.188 8.26124 17.2827 8.27001 17.38C8.28956 17.5775 8.23003 17.7747 8.10444 17.9284C7.97885 18.0821 7.79746 18.1798 7.60001 18.2L7.23001 18.25Z"}" fill="${"#000000"}"></path><path d="${"M12.58 18C12.0525 17.9965 11.5308 17.8887 11.0451 17.6827C10.5594 17.4768 10.1193 17.1768 9.75 16.8C8.97574 15.9837 8.55674 14.8937 8.58486 13.769C8.61297 12.6443 9.08592 11.5766 9.9 10.8L11.16 9.54C11.2287 9.46632 11.3115 9.40721 11.4035 9.36622C11.4955 9.32523 11.5948 9.30319 11.6955 9.30141C11.7962 9.29964 11.8962 9.31816 11.9896 9.35588C12.083 9.3936 12.1678 9.44975 12.239 9.52097C12.3103 9.59218 12.3664 9.67702 12.4041 9.77041C12.4418 9.86379 12.4604 9.96382 12.4586 10.0645C12.4568 10.1652 12.4348 10.2645 12.3938 10.3565C12.3528 10.4485 12.2937 10.5313 12.22 10.6L11 11.9C10.4753 12.3924 10.1662 13.0721 10.14 13.7912C10.1138 14.5103 10.3726 15.2107 10.86 15.74C11.3929 16.2047 12.0833 16.448 12.7898 16.4201C13.4963 16.3923 14.1654 16.0953 14.66 15.59L18.43 11.81C18.9393 11.3134 19.2355 10.6383 19.256 9.92727C19.2766 9.21626 19.0198 8.52513 18.54 8C18.2791 7.7422 17.9647 7.54495 17.6191 7.42224C17.2734 7.29954 16.905 7.2544 16.54 7.29C16.4427 7.29964 16.3445 7.28992 16.2511 7.2614C16.1576 7.23287 16.0707 7.18612 15.9954 7.12382C15.9201 7.06153 15.8578 6.98493 15.8123 6.89846C15.7667 6.81199 15.7388 6.71735 15.73 6.62C15.7104 6.42248 15.77 6.22527 15.8956 6.07156C16.0212 5.91786 16.2025 5.82021 16.4 5.8C16.9821 5.73967 17.5704 5.80779 18.1233 5.99959C18.6762 6.19138 19.1803 6.50216 19.6 6.91C20.3639 7.72153 20.7766 8.80172 20.7485 9.91585C20.7204 11.03 20.2538 12.088 19.45 12.86L15.69 16.65C14.8727 17.4937 13.7544 17.9791 12.58 18Z"}" fill="${"#000000"}"></path></g></svg></a></div></div></div>`;
 });
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -1464,4 +1777,4 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 
 export { Layout as default };
-//# sourceMappingURL=_layout.svelte-f418ec52.js.map
+//# sourceMappingURL=_layout.svelte-c9f4edbc.js.map

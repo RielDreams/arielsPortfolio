@@ -1,8 +1,14 @@
 <script>
-import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from 'flowbite-svelte'
+import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button, Modal } from 'flowbite-svelte'
+let defaultModal = false;
+
+function scrollToAnchor(anchor) {
+    const element = document.getElementById(anchor);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 
-<div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem">
+<div class="home flex flex flex-wrap mb-10 bg-blue-100 dark:bg-gray-200  pb-12 min-w-full" style="height:25rem" id='home'>
       <Navbar let:hidden let:toggle rounded color="none" class='min-w-full' style='height:5rem'>
         <NavBrand href="/">
             <DarkMode class="text-lg">
@@ -18,21 +24,25 @@ import { Navbar, NavBrand, NavHamburger, NavLi, NavUl, DarkMode, Button } from '
         <NavHamburger class1="w-full md:flex md:w-auto md:order-1" on:click={toggle} />
         </div>
         <NavUl {hidden}>
-          <NavLi href="/">Home</NavLi>
-          <NavLi href="/about">About</NavLi>
-          <NavLi href="/services">Projects</NavLi>
-          <NavLi href="/pricing">Skills</NavLi>
-          <NavLi href="/contact">Contact</NavLi>
+          <NavLi on:click={() => scrollToAnchor('home')}>Home</NavLi>
+          <NavLi on:click={() => scrollToAnchor('about')}>About</NavLi> 
+          <NavLi on:click={() => scrollToAnchor('projects')}>Projects</NavLi>
+          <NavLi on:click={() => scrollToAnchor('skills')}>Skills</NavLi>
+          <NavLi on:click={() => scrollToAnchor('contact')}>Contact</NavLi>
         </NavUl>
       </Navbar>
 
-    <div class="flex flex-wrap justify-center min-w-full items-top p-4 m-4">
+    <div class="flex flex-wrap justify-center min-w-full items-top m-4">
         <h1 class='text-5xl min-w-full text-center'>Ariel Fernandez</h1>
         <h3 class='text-3xl min-w-full text-center -my-5' >Software Engineer - NYC area</h3>
-        <h4 class='text-lg min-w-full text-center -my-1'>I love to create and build things using code</h4>
+        <h4 class='text-lg min-w-full text-center -my-1'>I have a deep interest in coding and the ability to use it to build and create</h4>
         <div class='min-w-full flex flex-wrap justify-center gap-1' style="height:1rem">
-        <Button>LinkedIn</Button>
-        <Button>GitHub</Button>
+        <Button href='https://www.linkedin.com/in/arielfernandez412/'>LinkedIn</Button>
+        <Button on:click={() => defaultModal = true}>Resume</Button>
+        <Modal title="Ariels Resume" bind:open={defaultModal} autoclose>
+          <img src="https://i.imgur.com/Iw1YXTf.jpg" alt="">
+        </Modal>
+          <Button href='https://github.com/RielDreams'>GitHub</Button>
     </div>
     </div>
 </div>
